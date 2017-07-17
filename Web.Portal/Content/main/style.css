@@ -1,0 +1,19 @@
+*{margin:0;padding:0;}
+
+/* .silder-box{width:600px;height:400px;margin:0 auto 0;position:relative;}
+.silder{position:relative;overflow:hidden;width:400px;height:400px;margin:0 auto 0;}
+.silder li{width:400px;height:400px;} */
+.silder-box{position:relative;margin:50px auto ;}
+.silder{margin:0 auto 0;}
+.silder li{width:400px;height:400px;}
+.silder li img{width:100%;height:100%;}
+.silder-button{top:173px;width:43px;height:43px;position:absolute;cursor:pointer;}
+.silder-button.btl{left:0px;background:url(/Content/main/images/index/bl.png);}
+.silder-button.btr{right:0px;background:url(/Content/main/images/index/br.png);}
+
+.silder-box-1{width:1000px;}
+.silder-box-2{width:500px;}
+.silder-box-2 .silder li {width:200px;height:200px;}
+.silder-box-3{width:1000px;}
+
+.small-navs{position:absolute;}

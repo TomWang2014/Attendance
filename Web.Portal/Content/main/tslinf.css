@@ -1,0 +1,154 @@
+.content {
+  width: 100%;
+  padding-top: 50px;
+}
+
+.content > img {
+  display: block;
+  width: 100%;
+  min-width: 1171px;
+}
+
+.content > .main {
+  width: 1171px;
+  margin: 0 auto;
+}
+
+.content > .main > h2 {
+  height: 55px;
+  line-height: 55px;
+  color: #494949;
+  font-size: 18px;
+  border-bottom: 1px solid #ededed;
+}
+
+.content > .main > h2 > p {
+  float: right;
+  font-size: 14px;
+}
+
+.content > .main > h2 > span {
+  display: block;
+  float: left;
+  width: 5px;
+  height: 18px;
+  margin: 18.5px 8px 18.5px 0;
+  background-color: #0b60a1;
+}
+
+.content > .main > .infmain {
+  margin: 25px 0;
+}
+
+.content > .main > .infmain > .left {
+  float: left;
+  width: 244px;
+  height: 114px;
+  text-align: center;
+}
+
+.content > .main > .infmain > .left > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.content > .main > .infmain > .right {
+  width: 910px;
+  float: right;
+}
+
+.content > .main > .infmain > .right > h2 {
+  font-size: 30px;
+  color: #575757;
+  line-height: 30px;
+  margin-bottom: 15px;
+}
+
+.content > .main > .infmain > .right > .text {
+  color: #434343;
+  font-size: 14px;
+  line-height: 30px;
+}
+
+.content > .main > .infmain > .right > .text a {
+  width: 70px;
+  height: 25px;
+  line-height: 25px;
+  display: inline-block;
+  font-size: 16px;
+  color: #ffffff;
+  text-align: center;
+  background-color: #015293;
+  margin-left: 3px;
+}
+
+.content > .main > ul > li {
+  padding: 25px 0;
+  border-bottom: 1px solid #ededed;
+}
+
+.content > .main > ul > li > img {
+  display: block;
+  float: left;
+  width: 360px;
+  height: 206px;
+}
+
+.content > .main > ul > li > .itr {
+  float: right;
+  width: 800px;
+  height: 206px;
+  position: relative;
+}
+
+.content > .main > ul > li > .itr > h2 {
+  font-size: 14px;
+  color: #4f4e4e;
+  font-weight: 700;
+  margin: 20px 0;
+  margin-bottom: 10px;
+}
+
+.content > .main > ul > li > .itr > div > .price {
+  font-size: 20px;
+  color: #ff0d0d;
+  float: left;
+  margin-right: 20px;
+}
+
+.content > .main > ul > li > .itr > div > .list {
+  color: #4f4e4e;
+  font-size: 14px;
+  float: left;
+  margin-top: 5px;
+  margin-right: 60px;
+}
+
+.content > .main > ul > li > .itr > div > .time {
+  color: #4f4e4e;
+  font-size: 14px;
+  float: left;
+  margin-top: 5px;
+}
+
+.content > .main > ul > li > .itr > p {
+  color: #4f4e4e;
+  font-size: 12px;
+  line-height: 30px;
+}
+
+.content > .main > ul > li > .itr > button {
+  font-size: 12px;
+  color: #0b60a2;
+  background: url("/content/main/images/tsl/button-bc.png");
+  width: 79px;
+  height: 25px;
+  line-height: 25px;
+  display: block;
+  border: none;
+  position: absolute;
+  top: 25px;
+  cursor: pointer;
+  right: 0;
+}

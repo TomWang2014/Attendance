@@ -1,0 +1,158 @@
+.focus {
+    position: relative;
+    width: 1170px;
+    height: 320px;
+    float: left;
+}
+
+.banner-pic {
+    width: 700px;
+    height: 320px;
+    overflow: hidden;
+    display: block;
+}
+
+.focus .shadow .title {
+    width: 400px;
+    height: 65px;
+    padding-left: 30px;
+    padding-top: 20px;
+}
+
+.focus .shadow .title a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 14px;
+    font-weight: bolder;
+    overflow: hidden;
+}
+
+.focus .btn {
+    position: absolute;
+    bottom: 34px;
+    left: 510px;
+    overflow: hidden;
+    zoom: 1;
+}
+
+.focus .btn a {
+    position: relative;
+    display: inline;
+    width: 13px;
+    height: 13px;
+    border-radius: 7px;
+    margin: 0 5px;
+    color: #B0B0B0;
+    font: 12px/15px "\5B8B\4F53";
+    text-decoration: none;
+    text-align: center;
+    outline: 0;
+    float: left;
+    background: #79bbee;
+}
+
+.focus .btn a:hover, .focus .btn a.current {
+    cursor: pointer;
+    background: #bedaef;
+}
+
+.focus .fPic {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+
+.focus .D1fBt {
+    overflow: hidden;
+    zoom: 1;
+    height: 16px;
+    z-index: 10;
+}
+
+.focus .shadow a {
+    width: 380px;
+    position: absolute;
+    top: 15px;
+    left: 720px;
+    z-index: 10;
+    height: 40px;
+    line-height: 36px;
+    display: block;
+    text-align: left;
+    display: block;
+}
+
+.focus .shadow a:hover {
+    color: #0e77c9;
+}
+
+.focus .shadow h2 {
+    text-decoration: none;
+    color: #4d4d4d;
+    font-size: 16px;
+    overflow: hidden;
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+.focus .shadow p {
+    color: #4d4d4d;
+    font-size: 14px;
+    line-height: 30px;
+    text-indent: 2em;
+    height: 200px;
+    overflow: hidden;
+}
+
+.focus .fcon {
+    position: relative;
+    width: 100%;
+    float: left;
+    display: none;
+}
+
+.focus .fcon images {
+    display: block;
+}
+
+.focus .fbg {
+    bottom: 25px;
+    right: 30px;
+    position: absolute;
+    height: 21px;
+    text-align: center;
+    z-index: 200;
+}
+
+.focus .fbg div {
+    margin: 4px auto 0;
+    overflow: hidden;
+    zoom: 1;
+    height: 19px
+}
+
+.focus .D1fBt a {
+    position: relative;
+    display: inline;
+    width: 27px;
+    height: 8px;
+    margin: 0 5px;
+    float: left;
+    width: 20px;
+    height: 19px;
+    background: url(/content/main/images/icon/imgico2.png) no-repeat right;
+}
+
+.focus .D1fBt .current, .focus .D1fBt a:hover {
+    width: 40px;
+    background: url(/content/main/images/icon/imgico1.png) no-repeat left;
+}
+
+.focus .D1fBt images {
+    display: none
+}
+
+.focus .D1fBt i {
+    display: none;
+    font-style: normal;
+}

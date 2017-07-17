@@ -1,0 +1,18 @@
+﻿@model HandleErrorInfo
+@{
+    ViewBag.Title = "错误";
+}
+<h2 class="text-danger">操作失败:</h2>
+<hr />
+
+<h3>@Model.Exception.Message</h3>
+<p></p>
+@*<blockquote class="bg-warning">
+        <p>@Model.Exception.StackTrace</p>
+        <footer>@Model.Exception.Source</footer>
+    </blockquote>*@
+
+
+<script>
+    new Vue({ el: 'body' });
+</script>

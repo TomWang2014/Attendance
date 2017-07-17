@@ -1,0 +1,82 @@
+﻿@model List<Attendance.Application.AttendanceMgtServices.Dtos.TrainingTimeDetails>
+@{
+    ViewBag.Title = "考勤时间段详情";
+}
+<div class="container">
+    <div class="row clearfix border-bottom" style="margin-bottom:10px">
+        <div class="col-md-8 column">
+            <div class="row clearfix">
+                <div class="col-md-2 column">
+                    <h4>
+                        查询日期:
+                    </h4>
+                </div>
+                <div class="col-md-8 column">
+                    <div class="row">
+                        <label class="label">@ViewBag.TrainDate</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @if (Model != null && Model.Count > 0)
+            {
+        <div class="row clearfix border-bottom border-left-right">
+            <div class="col-md-8 column">
+                @foreach (var item in Model)
+                {
+                    <div class="row clearfix">
+                        <div class="col-md-2 column">
+                            <h4>
+                                时间段 @(Model.IndexOf(item)+1):
+                            </h4>
+                        </div>
+                        <div class="col-md-8 column">
+                            <div class="row">
+                                <label class="label datastart col-md-5 column" >@item.StartTime</label>
+                                <span class="col-md-2 column">至</span>
+                                <label class="label datastart col-md-5 column">@item.EndTime</label>
+                            </div>
+
+                        </div>
+                    </div>
+
+                }
+            </div>
+        </div>
+    }
+
+    <div class="row clearfix ">
+        <div class="col-md-12 column text-right" style="margin-top:10px">
+            <button type="button" class="btn  btn-primary" onclick="back()">返回</button>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+@section js{
+    @*<script src="~/Content/js/plugins/datetimepicker/bootstrap-datetimepicker.js"></script>
+        <script src="~/Content/js/plugins/datetimepicker/bootstrap-datetimepicker.zh-CN.js"></script>
+        <script src="~/Scripts/app/Training/EditTrainingDate/EditTimepicker.js"></script>*@
+
+    <script>
+        var vm = new Vue({
+            el: 'body'
+        });
+        var TrainId =@ViewBag.TrainId;
+        function back() {
+            window.location.href = "/Training/TrainingTimeList?id=" + TrainId;
+        }
+    </script>
+
+}
+@section css{
+    @*<link href="~/Content/js/plugins/datetimepicker/bootstrap-datetimepicker.css" rel="stylesheet" />
+        <link href="~/Content/css/timepicker.css" rel="stylesheet" />*@
+}

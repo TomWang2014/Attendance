@@ -1,0 +1,303 @@
+﻿@{
+    ViewBag.Title = "系统管理";
+}
+
+<div class="row">
+    <form class="form-horizontal" role="form">
+        <div class="col-sm-4">
+            <div class="form-group form-group">
+                <label class="col-sm-4 control-label" for="formGroupInputSmall">机构名称:</label>
+                <div class="col-sm-8">
+                    <input class="form-control" v-model="sysSearchDto.Name" type="text" id="formGroupInputSmall" placeholder="">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+            <div class="form-group form-group">
+                <label class="col-sm-4 control-label" for="formGroupInputSmall">登录账号：</label>
+                <div class="col-sm-8">
+                    <input class="form-control" v-model="sysSearchDto.Account" type="text" id="formGroupInputSmall" placeholder="">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+            <div class="form-group form-group">
+                <label class="col-sm-4 control-label" for="formGroupInputSmall"></label>
+                <div class="col-sm-8">
+                    <button type="button" v-on:click="getList()" class="btn btn-w-m btn-primary ">搜索</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>机构列表</h5>
+                <div class="ibox-tools">
+                    <button type="button" data-toggle="modal" data-target="#avatar-modal" class="btn btn-primary  btn-sm">新增机构</button>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <table class="table" v-if="list.length>0">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>机构编号</th>
+                            <th>登录账号</th>
+                            <th>机构昵称</th>
+                            <th>所属角色</th>
+                            <th>通信密钥</th>
+                            <th>创建时间</th>
+                            <th>其他操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="item in list">
+                            <td>{{$index+1}}</td>
+                            <td>{{item.Number}}</td>
+                            <td>{{item.NetSysUserAccount}}</td>
+                            <td>{{item.NetSysUserName}}</td>
+                            <td>{{item.NetSysUserNetSysRoleName}}</td>
+                            <td>{{item.AesKey}}</td>
+                            <td>{{item.CreateTime}}</td>
+                            <td>
+                                <button class="btn btn-info btn-xs" v-on:click="edituser(item)" type="button"><i class="fa fa-paste"></i> 编辑</button>
+                                <button class="btn btn-danger btn-xs" v-on:click="deleteInfo(item.Id)" type="button"><i class="fa fa-paste"></i> 删除</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div id="pager"></div>
+                <blockquote v-if="list.length==0">
+                    <p>暂无任何数据。</p>
+                    <footer>抱歉，没有查询到任何数据，请更改查询添加或<cite title="Source Title"><a data-toggle="modal" data-target="#avatar-modal" href="#">新增数据</a>！</cite></footer>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container" id="crop-avatar">
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="avatar-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">编辑机构信息</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="tabs-container">
+                        <ul class="nav nav-tabs">
+                            <li class="active">
+                                <a data-toggle="tab" href="#tab-1" id="baseInfo" aria-expanded="true"> 机构基本信息</a>
+                            </li>
+                            <li class="">
+                                <a data-toggle="tab" href="#tab-2" id="tab1" v-on:click="setLogo(1)" class="faUploadTab" aria-expanded="false">设置机构Logo</a>
+                            </li>
+                            <li class="">
+                                <a data-toggle="tab" href="#tab-2" id="tab2" v-on:click="setLogo(2)" class="faUploadTab" aria-expanded="false">设置机构图标</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div id="tab-1" class="tab-pane active">
+                                <div class="panel-body">
+                                    <form class="form-horizontal m-t" id="signupForm" novalidate="novalidate">
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">机构账号：</label>
+                                            <div class="col-sm-8">
+                                                <input id="firstname" name="Account" v-model="dto.Account" v-bind:readonly="dto.Id!=0" class="form-control" type="text">
+                                                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 账号是机构登录系统唯一标识，确定后不可更改。</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">机构昵称：</label>
+                                            <div class="col-sm-8">
+                                                <input id="lastname" name="Name" v-model="dto.Name" class="form-control" type="text" aria-required="true" aria-invalid="false">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">通信密钥：</label>
+                                            <div class="col-sm-8">
+                                                <input id="lastname" name="AesKey" v-model="dto.AesKey" class="form-control" type="text" aria-required="true" readonly aria-invalid="false">
+                                                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 通信密钥由系统自动生成，不可更改。</span>
+                                            </div>
+                                        </div>
+                                        @*<div class="form-group">
+                                                <label class="col-sm-3 control-label">通信网关：</label>
+                                                <div class="col-sm-8">
+                                                    <input id="lastname" name="Gateway" v-model="dto.Gateway" class="form-control" type="text" aria-required="true" aria-invalid="false">
+                                                </div>
+                                            </div>*@
+
+                                        @*<div class="form-group">
+                                                <label class="col-sm-3 control-label">回调地址：</label>
+                                                <div class="col-sm-8">
+                                                    <input id="TokenUrl" name="TokenUrl" v-model="dto.TokenUrl" class="form-control" type="text" aria-required="true" aria-invalid="false">
+                                                </div>
+                                            </div>*@
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">备注信息：</label>
+                                            <div class="col-sm-8">
+                                                <textarea v-model="dto.Descriptions" name="Descriptions" class="form-control" rows="3"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">其他信息：</label>
+                                            <div class="col-sm-4">
+                                                <div class="col-sm-12">
+                                                    <img width="150" v-bind:src="dto.Logo" alt="机构Logo.jpg" class="img-rounded">
+                                                </div>
+                                                <label class="col-sm-6 control-label">机构Logo</label>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="col-sm-12">
+                                                    <img width="150" v-bind:src="dto.FrontImage" alt="机构Ico.jpg" class="img-rounded">
+                                                </div>
+                                                <label class="col-sm-6 control-label">机构Ico</label>
+                                            </div>
+                                        </div>
+
+                                    </form>
+                                </div>
+                                <div style="border-top: 0" class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                    <button type="button" class="btn btn-primary" v-on:click="save()">保存</button>
+                                </div>
+                            </div>
+                            <div id="tab-2" class="tab-pane">
+                                <div class="panel-body">
+                                    <form class="avatar-form" id="avatarForm" action="@Url.Action("SetTenantLogoOrIoc", "System")" enctype="multipart/form-data" method="post">
+                                        <div class="modal-body">
+                                            <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> {{logoMsg}}</span>
+                                            <div class="avatar-body">
+                                                <!-- Upload image and data -->
+                                                <div class="avatar-upload">
+                                                    <input type="hidden" class="avatar-src" name="avatar_src">
+                                                    <input type="hidden" class="avatar-data" name="avatar_data">
+                                                    <input type="hidden" v-model="dto.Id" name="id">
+                                                    <input type="hidden" v-model="setLogoType" name="type">
+
+
+                                                    <input type="file" style="display: none" class="avatar-input" id="avatarInput" name="avatar_file">
+                                                </div>
+                                                <!-- Crop and preview -->
+                                                <div class="row">
+                                                    <div class="col-md-9">
+                                                        <div style="background-image: url('/Content/img/course.jpg')" class="avatar-wrapper"></div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div style="background-image: url('/Content/img/course.jpg');background-size: cover" class="avatar-preview preview-lg"></div>
+                                                        <p style="width: 100%;text-align: center;margin-top: 30px">
+
+                                                            <button type="button" id="btnSelectFile" class="btn btn-default btn-sm">选择图片</button>
+                                                            <button type="submit" class="btn btn-primary btn-sm">剪辑上传</button>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+@section js{
+    <script src="~/Content/js/plugins/avatar/assets/css/cropper.js"></script>
+    <script src="~/Scripts/app/systems/sysTenant/main.js"></script>
+    <script src="~/Scripts/app/systems/sysRole/services.js"></script>
+    <script src="~/Scripts/app/systems/sysTenant/services.js"></script>
+    <script src="~/Scripts/app/systems/sysTenant/index.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            $('#signupForm').bootstrapValidator({
+                fields: {
+                    Account: {
+                        validators: {
+                            notEmpty: {
+                                /*非空提示*/
+                                message: '登录账号不能为空！'
+                            },
+                            stringLength: {
+                                /*长度提示*/
+                                min: 6,
+                                max: 25,
+                                message: '登录账号长度必须在6到25之间'
+                            },
+                            regexp: {
+                                regexp: /^[a-zA-Z0-9_]+$/,
+                                message: '登录账号只能包含字母、数字和下划线'
+                            }
+                        }
+                    },
+                    Descriptions: {
+                        validators: {
+                            stringLength: {
+                                /*长度提示*/
+                                max: 50,
+                                message: '登录账号长度必须在6到15之间'
+                            } /*最后一个没有逗号*/
+                        }
+                    },
+                    Name: {
+                        validators: {
+                            notEmpty: {
+                                /*非空提示*/
+                                message: '机构昵称不能为空！'
+                            },
+                            stringLength: {
+                                /*长度提示*/
+                                min: 4,
+                                max: 16,
+                                message: '机构昵称长度必须在4到16之间'
+                            }
+                        }
+                    },
+                    //Gateway: {
+                    //    validators: {
+                    //        notEmpty: {
+                    //            /*非空提示*/
+                    //            message: '该字段不能为空！'
+                    //        }
+                    //    }
+                    //},
+                    //AesKey: {
+                    //    validators: {
+                    //        notEmpty: {
+                    //            /*非空提示*/
+                    //            message: '该字段不能为空！'
+                    //        }
+                    //    }
+                    //},
+                    NetSysUserNetSysRoleId: {
+                        validators: {
+                            notEmpty: {
+                                /*非空提示*/
+                                message: '该字段不能为空！'
+                            }
+                        }
+                    }
+                }
+            });
+        });
+
+    </script>
+}
+
+@section css{
+    <link href="~/Content/js/plugins/avatar/css/main.css" rel="stylesheet" />
+    <link href="~/Content/js/plugins/avatar/assets/css/cropper.min.css" rel="stylesheet" />
+}

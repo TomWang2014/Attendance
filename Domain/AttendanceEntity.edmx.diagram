@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="aa1e4e2884f84d2fa42f789f610fc117" Name="Diagram1">
+        <EntityTypeShape EntityType="AttendanceModel.NetOperateLog" Width="1.5" PointX="2.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendanceModel.NetSysFunc" Width="1.5" PointX="5.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendanceModel.NetSysRole" Width="1.5" PointX="8" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendanceModel.NetSysUser" Width="1.5" PointX="10.25" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendanceModel.NetTenant" Width="1.5" PointX="12.5" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendanceModel.Training" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendanceModel.TrainingCard" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendanceModel.TrainingCheckin" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendanceModel.TrainingSignUp" Width="1.5" PointX="6" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendanceModel.TrainingTimes" Width="1.5" PointX="3" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendanceModel.TrainingVerificationCode" Width="1.5" PointX="4.75" PointY="0.875" IsExpanded="true" />
+        <AssociationConnector Association="AttendanceModel.FK_dbo_Sys_Func_dbo_Sys_Func_ParentFuncId" ManuallyRouted="false" />
+        <AssociationConnector Association="AttendanceModel.FK_NetSysUser_NetSysRole1" ManuallyRouted="false" />
+        <AssociationConnector Association="AttendanceModel.FK_NetTenant_NetSysUser" ManuallyRouted="false" />
+        <AssociationConnector Association="AttendanceModel.FK_Tab_TrainingCheckin_Tab_Training" ManuallyRouted="false" />
+        <AssociationConnector Association="AttendanceModel.FK_Tab_TrainingSignUp_Tab_Training" ManuallyRouted="false" />
+        <AssociationConnector Association="AttendanceModel.FK_Tab_TrainingTimes_Tab_Training" ManuallyRouted="false" />
+        <AssociationConnector Association="AttendanceModel.FK_Tab_TrainingCheckin_Tab_TrainingCard" ManuallyRouted="false" />
+        <AssociationConnector Association="AttendanceModel.FK_Tab_TrainingSignUp_Tab_TrainingCard" ManuallyRouted="false" />
+        <AssociationConnector Association="AttendanceModel.NetSysFuncSysRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

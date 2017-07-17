@@ -1,0 +1,66 @@
+﻿@{
+    ViewBag.Title = "添加考勤日期";
+}
+<div class="container">
+    <div class="row clearfix border-bottom" style="margin-bottom:10px">
+        <div class="col-md-8 column">
+            <div class="row clearfix">
+                <div class="col-md-2 column">
+                    <h4>
+                        查询日期:
+                    </h4>
+                </div>
+                <div class="col-md-8 column">
+                    <div class="row">
+                        <input type="text" class="col-md-5" style="height:30px" v-model="TrainingDate" id="TrainingDate">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row clearfix border-bottom border-left-right">
+        <div class="col-md-8 column" id="timeList">
+            <div class="row clearfix" v-for="item in timeList">
+                <div class="col-md-2 column">
+                    <h4>
+                        时间段{{timeList.indexOf(item)+1}}:
+                    </h4>
+                </div>
+                <div class="col-md-8 column">
+                    <div class="row">
+                        <input type="text" v-model="item.start" v-bind:class="item.class" class="datastart col-md-5 column" placeholder="开始">
+                        <span class="col-md-2 column">至</span>
+                        <input type="text" v-model="item.end" v-bind:class="item.class" class="dataend col-md-5 column" placeholder="结束">
+                    </div>
+
+                </div>
+                <div class="col-md-2 column">
+                    <button type="button" class="btn btn-default" v-on:click="minTime(index)">删除时间段-</button>
+                </div>
+            </div>
+            <button id="addTime" type="button" class="btn btn-default" v-on:click="addList()">添加时间段+</button>
+        </div>
+    </div>
+    <div class="row clearfix ">
+        <div class="col-md-12 column text-right" style="margin-top:10px">
+            <button type="button" class="btn  btn-primary" v-on:click="save()">确认添加</button>
+            <button type="button" class="btn  btn-primary" v-on:click="back()">返回</button>
+        </div>
+
+    </div>
+
+</div>
+
+
+@section js{
+    <script>
+        var TrainId =@ViewBag.TrainId;
+    </script>
+    <script src="~/Content/js/plugins/datetimepicker/bootstrap-datetimepicker.js"></script>
+    <script src="~/Content/js/plugins/datetimepicker/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="~/Scripts/app/Training/AddTrainingDate/timepicker.js"></script>
+}
+@section css{
+    <link href="~/Content/js/plugins/datetimepicker/bootstrap-datetimepicker.css" rel="stylesheet" />
+    <link href="~/Content/css/timepicker.css" rel="stylesheet" />
+}

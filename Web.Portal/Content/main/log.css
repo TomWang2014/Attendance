@@ -1,0 +1,123 @@
+@charset "UTF-8";
+body[class="gray-bg"] {
+  font-family: "微软雅黑";
+  position: relative;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.gray-bg > .bcimg {
+  width: 1910px;
+  display: block;
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.gray-bg > p {
+  z-index: 2;
+  text-align: center;
+  font-size: 12px;
+  color: #4f4f4f;
+  position: absolute;
+  top: calc(50% + 250px);
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+          transform: translateX(-50%);
+  line-height: 30px;
+}
+
+.gray-bg > .logoimg {
+  z-index: 2;
+  position: absolute;
+  display: block;
+  height: 15%;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translateX(-50%) translateY(calc(-200px - 100%));
+      -ms-transform: translateX(-50%) translateY(calc(-200px - 100%));
+          transform: translateX(-50%) translateY(calc(-200px - 100%));
+}
+
+.gray-bg > .middle-box {
+  z-index: 2;
+  display: block;
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+      -ms-transform: translateX(-50%) translateY(-50%);
+          transform: translateX(-50%) translateY(-50%);
+  height: 240px;
+  width: 360px;
+  padding: 0;
+  top: 52.6%;
+}
+
+.gray-bg > .middle-box > div > h3 {
+  color: #e8001b;
+  font-size: 12px;
+  font-weight: 400;
+  text-align: left;
+  margin-bottom: 5px;
+}
+
+.gray-bg > .middle-box > div > .m-t {
+  margin-top: 5px;
+}
+
+.gray-bg > .middle-box > div > .m-t > .form-group {
+  margin-bottom: 20px;
+}
+
+.gray-bg > .middle-box > div > .m-t > .form-group:after {
+  display: block;
+  content: "";
+  clear: both;
+}
+
+.gray-bg > .middle-box > div > .m-t > .form-group > input {
+  height: 40px;
+  width: 315px;
+  float: left;
+  display: block;
+  box-sizing: border-box;
+  border: 1px solid #b5b5b5;
+  border-right: none;
+}
+
+.gray-bg > .middle-box > div > .m-t > .form-group > #verCode {
+  width: 185px;
+  border: 1px solid #b5b5b5;
+}
+
+.gray-bg > .middle-box > div > .m-t > .form-group > #verCode + img {
+  float: left;
+  margin-left: 30px;
+  display: block;
+  height: 100%;
+}
+
+.gray-bg > .middle-box > div > .m-t > .form-group > .fa {
+  width: 45px;
+  height: 40px;
+  display: block;
+  line-height: 40px;
+  text-align: center;
+  color: #ffffff;
+  background-color: #15b694;
+  float: right;
+  font-size: 16px;
+}
+
+.gray-bg > .middle-box > div > .m-t > button {
+  height: 40px;
+  line-height: 40px;
+  padding: 0;
+  font-size: 16px;
+}

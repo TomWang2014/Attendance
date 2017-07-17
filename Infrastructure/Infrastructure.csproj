@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{639A5C41-C570-4EAC-980D-04812A773C83}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Attendance.Infrastructure</RootNamespace>
+    <AssemblyName>Attendance.Infrastructure</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=4.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Gma.QrCodeNet.Encoding, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QrCode.Net.0.4.0.0\lib\net45\Gma.QrCodeNet.Encoding.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Interception, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.Interception.4.0.1\lib\Net45\Microsoft.Practices.Unity.Interception.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Interception.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.Interception.4.0.1\lib\Net45\Microsoft.Practices.Unity.Interception.Configuration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NPOI, Version=2.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.3.0\lib\net40\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML, Version=2.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.3.0\lib\net40\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net, Version=2.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.3.0\lib\net40\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats, Version=2.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.3.0\lib\net40\NPOI.OpenXmlFormats.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AutoMapper\AutoMapAttribute.cs" />
+    <Compile Include="AutoMapper\AutoMapDirection.cs" />
+    <Compile Include="AutoMapper\AutoMapExtensions.cs" />
+    <Compile Include="AutoMapper\AutoMapFromAttribute.cs" />
+    <Compile Include="AutoMapper\AutoMapperHelper.cs" />
+    <Compile Include="AutoMapper\AutoMapperInitializer.cs" />
+    <Compile Include="AutoMapper\AutoMapToAttribute.cs" />
+    <Compile Include="Cache\ICache.cs" />
+    <Compile Include="Cache\Runtime\RuntimeCache.cs" />
+    <Compile Include="Collections\Extensions\CollectionExtensions.cs" />
+    <Compile Include="Collections\Extensions\DictionaryExtensions.cs" />
+    <Compile Include="Collections\Extensions\QueryableExtension.cs" />
+    <Compile Include="Collections\Extensions\QueryableHelper.cs" />
+    <Compile Include="Collections\ITypeList.cs" />
+    <Compile Include="Collections\TypeList.cs" />
+    <Compile Include="Data\AppDataContext.cs" />
+    <Compile Include="Data\IRepositoryBase.cs" />
+    <Compile Include="Data\IUnitOfWork.cs" />
+    <Compile Include="Data\RepositoryBase.cs" />
+    <Compile Include="Data\Specification\ExpressionBuilder.cs" />
+    <Compile Include="Data\Specification\ParameterRebinder.cs" />
+    <Compile Include="Dto\EnityFilterMessagesDto.cs" />
+    <Compile Include="Dto\EntityActionsDto.cs" />
+    <Compile Include="Dto\EntityDto.cs" />
+    <Compile Include="Dto\EntityDtoOfTPrimaryKey.cs" />
+    <Compile Include="Dto\EntityPagedDto.cs" />
+    <Compile Include="Dto\EntitySelectDto.cs" />
+    <Compile Include="Dto\IDto.cs" />
+    <Compile Include="Dto\IEntityDto.cs" />
+    <Compile Include="Dto\IEntityDtoOfPrimaryKey.cs" />
+    <Compile Include="Entity\Auditing\IDeletionAudited.cs" />
+    <Compile Include="Entity\Auditing\IHasCreationTime.cs" />
+    <Compile Include="Entity\Auditing\IHasModifyTime.cs" />
+    <Compile Include="Entity\BaseEntity.cs" />
+    <Compile Include="Entity\ComboboxItemDto.cs" />
+    <Compile Include="Entity\DataStat\TenantProjectStatItem.cs" />
+    <Compile Include="Entity\DataStat\TenantStudentEnterStatItem.cs" />
+    <Compile Include="Entity\DataStat\TenantSummaryItem.cs" />
+    <Compile Include="Entity\DateTimeFormatDto.cs" />
+    <Compile Include="Entity\IPagedEntity.cs" />
+    <Compile Include="Entity\LoginLogDto.cs" />
+    <Compile Include="Entity\Main\MainNewsInfoItem.cs" />
+    <Compile Include="Entity\Main\MainProject.cs" />
+    <Compile Include="Entity\PagedResult.cs" />
+    <Compile Include="Entity\PageEntity.cs" />
+    <Compile Include="Exceptions\AppAuthorizationException.cs" />
+    <Compile Include="Exceptions\UserFriendlyException.cs" />
+    <Compile Include="Exceptions\ValidationException.cs" />
+    <Compile Include="Log.cs" />
+    <Compile Include="Mvc\Authorization\AnonymousAttribute.cs" />
+    <Compile Include="Mvc\Authorization\AppAuthorize.cs" />
+    <Compile Include="Mvc\Authorization\IAuthorizeAttributeHelper.cs" />
+    <Compile Include="Mvc\ControllerExtensions.cs" />
+    <Compile Include="Mvc\Filter\ExceptionFilterAttribute.cs" />
+    <Compile Include="Mvc\Jsonp\JsonpResult.cs" />
+    <Compile Include="Mvc\ModelBinder\FromJsonAttribute.cs" />
+    <Compile Include="Mvc\ModelBinder\JsonModelBinder.cs" />
+    <Compile Include="Mvc\PerExecutionContextLifetimeManager.cs" />
+    <Compile Include="Mvc\Route\DomainData.cs" />
+    <Compile Include="Mvc\Route\DomainRoute.cs" />
+    <Compile Include="Mvc\UnityControllerApiFactory.cs" />
+    <Compile Include="Mvc\UnityControllerFactory.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reflection\DefaultAssemblyFinder.cs" />
+    <Compile Include="Reflection\Extensions\MemberInfoExtensions.cs" />
+    <Compile Include="Reflection\ReflectionHelper.cs" />
+    <Compile Include="Reflection\TypeFinder.cs" />
+    <Compile Include="Runtime\Session\AppUser.cs" />
+    <Compile Include="Runtime\Session\IAppSession.cs" />
+    <Compile Include="Toolkit\AESHelper.cs" />
+    <Compile Include="Toolkit\CacheHelper.cs" />
+    <Compile Include="Toolkit\DateTimeEx.cs" />
+    <Compile Include="Toolkit\EnumHelper.cs" />
+    <Compile Include="Toolkit\ExcelHelper.cs" />
+    <Compile Include="Toolkit\Hasher.cs" />
+    <Compile Include="Toolkit\JsonHelper.cs" />
+    <Compile Include="Toolkit\QRCodeHelper.cs" />
+    <Compile Include="Toolkit\RandomNumberHelper.cs" />
+    <Compile Include="Toolkit\StringExtension.cs" />
+    <Compile Include="Toolkit\StringHelper.cs" />
+    <Compile Include="Toolkit\ZipHelper.cs" />
+    <Compile Include="Unity\Aop\InterceptionRegister.cs" />
+    <Compile Include="Unity\Aop\InterceptiveObject.cs" />
+    <Compile Include="Unity\Aop\MethodRoleAttribute.cs" />
+    <Compile Include="Unity\Aop\ValidationInterceptionBehavior.cs" />
+    <Compile Include="Unity\Ioc\IocManager.cs" />
+    <Compile Include="Validation\ICustomValidate.cs" />
+    <Compile Include="Validation\IShouldNormalize.cs" />
+    <Compile Include="Validation\IValidate.cs" />
+    <Compile Include="Validation\MethodInvocationValidator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

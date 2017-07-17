@@ -1,0 +1,106 @@
+﻿@model List<Attendance.Application.AttendanceMgtServices.Dtos.TrainingTimeDto>
+@{
+    ViewBag.Title = "培训班详情";
+}
+<div class="row" style="margin-top:-15px">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>基本信息</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="project-list">
+                    @if (ViewBag.model != null)
+                    {
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td>培训班名称：@ViewBag.model.Name</td>
+                                </tr>
+                                <tr>
+                                    <td>培训班密码：@ViewBag.model.Password</td>
+                                </tr>
+                                <tr>
+                                    <td>开课时间：@ViewBag.model.StartTimeStr</td>
+                                </tr>
+                                <tr>
+                                    <td>结课时间：@ViewBag.model.EndTimeStr</td>
+                                </tr>
+
+                                <tr>
+                                    <td>报名开始时间：@ViewBag.model.SignUpStartStr</td>
+                                </tr>
+                                <tr>
+                                    <td>报名结束时间：@ViewBag.model.SignUpEndStr</td>
+                                </tr>
+                                <tr>
+                                    <td>简介：@ViewBag.model.Descriptions</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    }
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+@if (Model != null && Model.Count > 0)
+{
+    foreach (var item in Model)
+    {
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>@item.TrainingDateStr</h5>
+                    </div>
+                    @if (item.Times != null && item.Times.Count > 0)
+                    { <div class="ibox-content">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>考勤开始时间</th>
+                                        <th>考勤结束时间</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item1 in item.Times)
+                                    {
+                                        <tr>
+                                            <td>@item1.StartTime</td>
+                                            <td>@item1.EndTime</td>
+                                        </tr>
+
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+
+                </div>
+
+            </div>
+        </div>
+    }
+
+}
+<div class="row clearfix ">
+    <div class="col-md-12 column text-right" style="margin-top:10px">
+        <button type="button" class="btn  btn-primary" onclick="back()">返回</button>
+    </div>
+
+</div>
+
+@section js{
+    <script>
+        var vm = new Vue({
+            el: 'body'
+        });
+
+        function back() {
+            window.location.href = "/Training/TrainingList";
+        }
+    </script>
+}

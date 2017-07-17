@@ -1,0 +1,244 @@
+﻿@{
+    ViewBag.Title = "系统管理";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row" style="background-color:white;margin-top:-15px">
+    <form class="form-horizontal" role="form" style="margin-top:6px">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="formGroupInputSmall" style="text-align:center">用户名称</label>
+                <div class="col-sm-8">
+                    <input class="form-control" v-model="sysSearchDto.Name" type="text" id="formGroupInputSmall" placeholder="">
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="formGroupInputSmall"  style="text-align:center">登录账号</label>
+                <div class="col-sm-8">
+                    <input class="form-control" v-model="sysSearchDto.Account" type="text" id="formGroupInputSmall" placeholder="">
+                </div>
+            </div>
+        </div>
+        @*<div class="col-sm-3">
+                <div class="form-group form-group">
+                    <label class="col-sm-4 control-label" for="formGroupInputSmall">用户编号：</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" type="text" name="name" v-model="sysSearchDto.Number" value="" />
+                    </div>
+                </div>
+            </div>*@
+        <div class="col-sm-4">
+            <div class="form-group form-group">
+                <div class="col-sm-8">
+                    <button type="button" v-on:click="getList()" class="btn btn-w-m btn-primary ">搜索</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>用户列表</h5>
+                <div class="ibox-tools" style="margin-top:-7px">
+                    <button v-if="userSelected.length>1" type="button" style="margin-right: 8px" v-on:click="deleteBatch()" class="btn btn-danger btn-sm">批量删除</button>
+                    <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-primary  btn-sm">新增用户</button>
+                </div>
+            </div>
+            <div class="ibox-content" style="margin-top:5px">
+                <table class="table" v-if="list.length>0">
+                    <thead>
+                        <tr>
+                            <td style="width: 40px; text-align: center;">
+                                <input v-model="checkAllBool" type="checkbox">
+                            </td>
+                            <th style="cursor: pointer" v-on:click="sort('Id')">#</th>
+                            <th style="cursor: pointer" v-on:click="sort('Number')">用户编号</th>
+                            <th>登录账号</th>
+                            <th>用户姓名</th>
+                            <th>所属角色</th>
+                            <th style="cursor: pointer" v-on:click="sort('CreationTime')">创建时间
+                            <th>其他操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="item in list">
+                            <td style="width: 40px; text-align: center;">
+                                <input type="checkbox" v-on:change="change(item.seleced,item.Id);" v-model="item.seleced" />
+                            </td>
+                            @*<td>{{$index+1}}</td>*@
+                            <td>{{$index+1}}</td>
+                            <td>{{item.Number}}</td>
+                            <td>{{item.Account}}</td>
+                            <td>{{item.Name}}</td>
+                            <td>{{item.Net_SysRoleName}}</td>
+                            <td>{{item.CreationTime}}</td>
+                            <td>
+                                <button class="btn btn-info btn-xs" v-on:click="edituser(item)" type="button"><i class="fa fa-paste"></i> 编辑</button>
+                                @*<button class="btn  btn-xs" v-on:click="resetPassword(item)" type="button"><i class="fa fa-paste"></i> 重置密码</button>*@
+                                <button class="btn btn-danger btn-xs" v-on:click="deleteuser(item.Id)" type="button"><i class="fa fa-paste"></i> 删除</button>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div id="pager"></div>
+                <blockquote v-if="list.length==0">
+                    <p>暂无任何数据。</p>
+                    <footer>抱歉，没有查询到任何数据，请更改查询添加或<cite title="Source Title"><a data-toggle="modal" data-target="#myModal" href="#">新增数据</a>！</cite></footer>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">添加用户信息</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal m-t" id="signupForm" novalidate="novalidate">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">登录账号：</label>
+                        <div class="col-sm-8" v-if="dto.Id==0">
+                            <input id="firstname" name="account" v-model="dto.Account" class="form-control" type="text">
+                            <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 登录账号是系统唯一标识，确定后不可更改。</span>
+                        </div>
+                        <div class="col-sm-8" v-else>
+                            <input id="firstname" name="account" v-model="dto.Account" class="form-control" type="text" readonly="readonly">
+                            <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 登录账号是系统唯一标识，确定后不可更改。</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">用户昵称：</label>
+                        <div class="col-sm-8">
+                            <input id="lastname" name="nickName" v-model="dto.Name" class="form-control" type="text" aria-required="true" aria-invalid="false">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">所属角色：</label>
+                        <div class="col-sm-8">
+                            <select class="form-control" name="roleName" v-model="dto.SysRoleId">
+                                <option value="">请选择用户角色</option>
+                                <option v-for="item in roleList" value="{{item.Value}}">{{item.DisplayText}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">电话号码：</label>
+                        <div class="col-sm-8">
+                            <input id="password" name="phone" class="form-control" type="text">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">E-mail：</label>
+                        <div class="col-sm-8">
+                            <input id="email" name="email" class="form-control" type="email">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" v-on:click="save()">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section js{
+    <script src="~/Scripts/app/systems/sysUsers/services.js"></script>
+    <script src="~/Scripts/app/systems/sysRole/services.js"></script>
+    <script src="~/Scripts/app/systems/sysUsers/index.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            /**
+             * 下面是进行插件初始化
+             * 你只需传入相应的键值对
+             * */
+            $('#signupForm').bootstrapValidator({
+                fields: {
+                    account: {
+                        validators: {
+                            notEmpty: {
+                                /*非空提示*/
+                                message: '登录账号不能为空！'
+                            },
+                            stringLength: {
+                                /*长度提示*/
+                                min: 6,
+                                max: 15,
+                                message: '登录账号长度必须在6到15之间'
+                            },
+                            regexp: {
+                                regexp: /^[a-zA-Z0-9_]+$/,
+                                message: '用户名只能包含字母、数字和下划线'
+                            }
+                        }
+                    },
+                    nickName: {
+                        validators: {
+                            notEmpty: {
+                                /*非空提示*/
+                                message: '昵称字段不能为空！'
+                            },
+                            stringLength: {
+                                /*长度提示*/
+                                min: 4,
+                                max: 16,
+                                message: '昵称长度必须在4到16之间'
+                            }
+                        }
+                    },
+                    phone: {
+                        validators: {
+                            //notEmpty: {
+                            //    /*非空提示*/
+                            //    message: '电话号码不能为空！'
+                            //},
+                            stringLength: {
+                                /*长度提示*/
+                                min: 0,
+                                max: 12,
+                                message: '电话号码长度最多12位'
+                            },
+                            regexp: {
+                                regexp: /^[0-9-]+$/,
+                                message: '电话号码格式不正确'
+                            }
+                        }
+                    },
+                    email: {
+                        validators: {
+                            //notEmpty: {
+                            //    /*非空提示*/
+                            //    message: '邮箱不能为空！'
+                            //}
+                            stringLength: {
+                                /*长度提示*/
+                                min: 0,
+                                max: 32,
+                                message: '邮箱长度最多32位'
+                            } /*最后一个没有逗号*/
+                        }
+                    },
+                    roleName: {
+                        validators: {
+                            notEmpty: {
+                                /*非空提示*/
+                                message: '用户角色不能为空！'
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+}

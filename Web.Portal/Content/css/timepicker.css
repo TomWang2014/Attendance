@@ -1,0 +1,31 @@
+#timeList h4 {
+  height: 30px;
+  line-height: 30px;
+  margin: 0;
+}
+
+#timeList input {
+  height: 30px;
+  line-height: 30px;
+}
+
+#timeList span {
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+}
+
+#timeList button {
+  height: 30px;
+  line-height: 30px;
+  padding: 0 15px;
+  outline: none;
+}
+
+#timeList .clearfix {
+  margin-bottom: 15px;
+}
+
+#addTime {
+  margin-top: 20px;
+}

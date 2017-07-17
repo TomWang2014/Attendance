@@ -1,0 +1,79 @@
+﻿@{
+    ViewBag.Title = "学员列表";
+}
+
+<div class="row" style="margin-top:-15px;background-color:white;">
+    <form class="form-horizontal" role="form" style="margin-top:6px">
+        <div class="col-sm-4">
+            <div class="form-group form-group">
+                <label class="col-sm-4 control-label" for="CardNumber" style="text-align:center">学员卡号</label>
+                <div class="col-sm-8">
+                    <input class="form-control" v-model="studentListSearchDto.CardNumber" type="text" id="CardNumber" placeholder="学员卡号">
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="form-group form-group">
+                <label class="col-sm-4 control-label" for="StudentPhone" style="text-align:center">手机</label>
+                <div class="col-sm-8">
+                    <input class="form-control" v-model="studentListSearchDto.StudentPhone" type="text" id="StudentPhone" placeholder="手机号">
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="form-group form-group">
+                <div class="col-sm-8">
+                    <button type="button" v-on:click="getStudentList()" class="btn btn-w-m btn-primary ">搜索</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>无考勤记录学员列表</h5>
+            </div>
+            <div class="ibox-content" style="margin-top:5px">
+                <table class="table" v-if="list.length>0">
+                    <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th>培训班名称</th>
+                            <th>学员卡号</th>
+                            <th>学员手机号</th>
+                            <th>学员名称</th>
+                            <th>报名时间</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="item in list">
+                            <td>{{list.indexOf(item)+1}}</td>
+                            <td>{{item.TrainingName}}</td>
+                            <td>{{item.TrainingCardCardNumber}}</td>
+                            <td>{{item.StudentPhone}}</td>
+                            <td>{{item.StudentName}}</td>
+                            <td>{{item.CreateTimeStr}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div id="pager"></div>
+                <blockquote v-if="list.length==0">
+                    <p>暂无任何数据。</p>
+                    <footer>抱歉，没有查询到任何数据，请更改查询！</footer>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section js{
+    <script>
+         var trainId=@ViewBag.TrainId;
+    </script>
+    <script src="~/Scripts/app/Training/AbsentList/services.js"></script>
+    <script src="~/Scripts/app/Training/AbsentList/index.js"></script>
+}

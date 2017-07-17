@@ -1,0 +1,836 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="AttendanceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="NetOperateLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Field1" Type="varchar" MaxLength="200" />
+          <Property Name="Field2" Type="varchar" MaxLength="200" />
+          <Property Name="Field3" Type="varchar" MaxLength="200" />
+          <Property Name="Field4" Type="varchar" MaxLength="200" />
+          <Property Name="Field5" Type="varchar" MaxLength="200" />
+          <Property Name="OperatorId" Type="int" />
+          <Property Name="OperatorCreateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NetSysFunc">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="OrderNumber" Type="int" Nullable="false" />
+          <Property Name="AreaName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ControllerName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ActionName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ParentFuncId" Type="int" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsTenantFunc" Type="bit" />
+          <Property Name="FuncType" Type="int" Nullable="false" />
+          <Property Name="IsDisplay" Type="bit" Nullable="false" />
+          <Property Name="Icon" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="NetSysFuncSysRoles">
+          <Key>
+            <PropertyRef Name="SysFuncId" />
+            <PropertyRef Name="SysRoleId" />
+          </Key>
+          <Property Name="SysFuncId" Type="int" Nullable="false" />
+          <Property Name="SysRoleId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NetSysRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Number" Type="nvarchar" MaxLength="50" />
+          <Property Name="Type" Type="int" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CreationTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NetSysUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Account" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Number" Type="nvarchar" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar" MaxLength="20" />
+          <Property Name="Type" Type="int" Nullable="false" />
+          <Property Name="Gender" Type="int" />
+          <Property Name="IdCardNo" Type="nvarchar(max)" />
+          <Property Name="SysRoleId" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CreationTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NetTenant">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Number" Type="nvarchar" MaxLength="50" />
+          <Property Name="FrontImage" Type="nvarchar" MaxLength="200" />
+          <Property Name="Logo" Type="nvarchar" MaxLength="200" />
+          <Property Name="Descriptions" Type="nvarchar(max)" />
+          <Property Name="IsDelete" Type="bit" Nullable="false" />
+          <Property Name="CreateUser" Type="int" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="OperUser" Type="int" />
+          <Property Name="OperTime" Type="datetime" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Training">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="16" Nullable="false" />
+          <Property Name="StartTime" Type="datetime" Nullable="false" />
+          <Property Name="EndTime" Type="datetime" Nullable="false" />
+          <Property Name="Descriptions" Type="nvarchar(max)" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="SignUpStart" Type="datetime" />
+          <Property Name="SignUpEnd" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TrainingCard">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CardNumber" Type="nvarchar" MaxLength="16" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TrainingCheckin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TrainingId" Type="int" Nullable="false" />
+          <Property Name="CardId" Type="int" Nullable="false" />
+          <Property Name="CheckInTime" Type="datetime" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="CheckCode" Type="nvarchar" MaxLength="64" />
+        </EntityType>
+        <EntityType Name="TrainingSignUp">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TrainingId" Type="int" Nullable="false" />
+          <Property Name="CardId" Type="int" Nullable="false" />
+          <Property Name="StudentName" Type="nvarchar" MaxLength="32" />
+          <Property Name="StudentPhone" Type="nvarchar" MaxLength="16" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TrainingTimes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TrainingId" Type="int" Nullable="false" />
+          <Property Name="TrainingDate" Type="datetime" Nullable="false" />
+          <Property Name="StartTime" Type="datetime" Nullable="false" />
+          <Property Name="EndTime" Type="datetime" Nullable="false" />
+          <Property Name="Type" Type="int" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TrainingVerificationCode">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StudentPhone" Type="int" />
+          <Property Name="TrainingId" Type="int" Nullable="false" />
+          <Property Name="IsVerification" Type="int" />
+          <Property Name="VerificationCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="VerificationTime" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_dbo_Sys_Func_dbo_Sys_Func_ParentFuncId">
+          <End Role="NetSysFunc" Type="Self.NetSysFunc" Multiplicity="0..1" />
+          <End Role="NetSysFunc1" Type="Self.NetSysFunc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NetSysFunc">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="NetSysFunc1">
+              <PropertyRef Name="ParentFuncId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_SysFuncSysRoles_dbo_Sys_Func_SysFunc_Id">
+          <End Role="NetSysFunc" Type="Self.NetSysFunc" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="NetSysFuncSysRoles" Type="Self.NetSysFuncSysRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NetSysFunc">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="NetSysFuncSysRoles">
+              <PropertyRef Name="SysFuncId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_SysFuncSysRoles_dbo_SysRole_SysRole_Id">
+          <End Role="NetSysRole" Type="Self.NetSysRole" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="NetSysFuncSysRoles" Type="Self.NetSysFuncSysRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NetSysRole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="NetSysFuncSysRoles">
+              <PropertyRef Name="SysRoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NetSysUser_NetSysRole1">
+          <End Role="NetSysRole" Type="Self.NetSysRole" Multiplicity="1" />
+          <End Role="NetSysUser" Type="Self.NetSysUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NetSysRole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="NetSysUser">
+              <PropertyRef Name="SysRoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NetTenant_NetSysUser">
+          <End Role="NetSysUser" Type="Self.NetSysUser" Multiplicity="1" />
+          <End Role="NetTenant" Type="Self.NetTenant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NetSysUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="NetTenant">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tab_TrainingCheckin_Tab_Training">
+          <End Role="Training" Type="Self.Training" Multiplicity="1" />
+          <End Role="TrainingCheckin" Type="Self.TrainingCheckin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Training">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TrainingCheckin">
+              <PropertyRef Name="TrainingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tab_TrainingCheckin_Tab_TrainingCard">
+          <End Role="TrainingCard" Type="Self.TrainingCard" Multiplicity="1" />
+          <End Role="TrainingCheckin" Type="Self.TrainingCheckin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TrainingCard">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TrainingCheckin">
+              <PropertyRef Name="CardId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tab_TrainingSignUp_Tab_Training">
+          <End Role="Training" Type="Self.Training" Multiplicity="1" />
+          <End Role="TrainingSignUp" Type="Self.TrainingSignUp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Training">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TrainingSignUp">
+              <PropertyRef Name="TrainingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tab_TrainingSignUp_Tab_TrainingCard">
+          <End Role="TrainingCard" Type="Self.TrainingCard" Multiplicity="1" />
+          <End Role="TrainingSignUp" Type="Self.TrainingSignUp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TrainingCard">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TrainingSignUp">
+              <PropertyRef Name="CardId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tab_TrainingTimes_Tab_Training">
+          <End Role="Training" Type="Self.Training" Multiplicity="1" />
+          <End Role="TrainingTimes" Type="Self.TrainingTimes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Training">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TrainingTimes">
+              <PropertyRef Name="TrainingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AttendanceModelStoreContainer">
+          <EntitySet Name="NetOperateLog" EntityType="Self.NetOperateLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NetSysFunc" EntityType="Self.NetSysFunc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NetSysFuncSysRoles" EntityType="Self.NetSysFuncSysRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NetSysRole" EntityType="Self.NetSysRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NetSysUser" EntityType="Self.NetSysUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NetTenant" EntityType="Self.NetTenant" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Training" EntityType="Self.Training" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TrainingCard" EntityType="Self.TrainingCard" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TrainingCheckin" EntityType="Self.TrainingCheckin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TrainingSignUp" EntityType="Self.TrainingSignUp" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TrainingTimes" EntityType="Self.TrainingTimes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TrainingVerificationCode" EntityType="Self.TrainingVerificationCode" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_Sys_Func_dbo_Sys_Func_ParentFuncId" Association="Self.FK_dbo_Sys_Func_dbo_Sys_Func_ParentFuncId">
+            <End Role="NetSysFunc" EntitySet="NetSysFunc" />
+            <End Role="NetSysFunc1" EntitySet="NetSysFunc" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_SysFuncSysRoles_dbo_Sys_Func_SysFunc_Id" Association="Self.FK_dbo_SysFuncSysRoles_dbo_Sys_Func_SysFunc_Id">
+            <End Role="NetSysFunc" EntitySet="NetSysFunc" />
+            <End Role="NetSysFuncSysRoles" EntitySet="NetSysFuncSysRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_SysFuncSysRoles_dbo_SysRole_SysRole_Id" Association="Self.FK_dbo_SysFuncSysRoles_dbo_SysRole_SysRole_Id">
+            <End Role="NetSysRole" EntitySet="NetSysRole" />
+            <End Role="NetSysFuncSysRoles" EntitySet="NetSysFuncSysRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NetSysUser_NetSysRole1" Association="Self.FK_NetSysUser_NetSysRole1">
+            <End Role="NetSysRole" EntitySet="NetSysRole" />
+            <End Role="NetSysUser" EntitySet="NetSysUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NetTenant_NetSysUser" Association="Self.FK_NetTenant_NetSysUser">
+            <End Role="NetSysUser" EntitySet="NetSysUser" />
+            <End Role="NetTenant" EntitySet="NetTenant" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tab_TrainingCheckin_Tab_Training" Association="Self.FK_Tab_TrainingCheckin_Tab_Training">
+            <End Role="Training" EntitySet="Training" />
+            <End Role="TrainingCheckin" EntitySet="TrainingCheckin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tab_TrainingCheckin_Tab_TrainingCard" Association="Self.FK_Tab_TrainingCheckin_Tab_TrainingCard">
+            <End Role="TrainingCard" EntitySet="TrainingCard" />
+            <End Role="TrainingCheckin" EntitySet="TrainingCheckin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tab_TrainingSignUp_Tab_Training" Association="Self.FK_Tab_TrainingSignUp_Tab_Training">
+            <End Role="Training" EntitySet="Training" />
+            <End Role="TrainingSignUp" EntitySet="TrainingSignUp" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tab_TrainingSignUp_Tab_TrainingCard" Association="Self.FK_Tab_TrainingSignUp_Tab_TrainingCard">
+            <End Role="TrainingCard" EntitySet="TrainingCard" />
+            <End Role="TrainingSignUp" EntitySet="TrainingSignUp" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tab_TrainingTimes_Tab_Training" Association="Self.FK_Tab_TrainingTimes_Tab_Training">
+            <End Role="Training" EntitySet="Training" />
+            <End Role="TrainingTimes" EntitySet="TrainingTimes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AttendanceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="NetOperateLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Field1" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Field2" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Field3" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Field4" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Field5" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="OperatorId" Type="Int32" />
+          <Property Name="OperatorCreateTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="NetSysFunc">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OrderNumber" Type="Int32" Nullable="false" />
+          <Property Name="AreaName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ControllerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ActionName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ParentFuncId" Type="Int32" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsTenantFunc" Type="Boolean" />
+          <Property Name="FuncType" Type="Int32" Nullable="false" />
+          <Property Name="IsDisplay" Type="Boolean" Nullable="false" />
+          <Property Name="Icon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="NetSysFunc1" Relationship="Self.FK_dbo_Sys_Func_dbo_Sys_Func_ParentFuncId" FromRole="NetSysFunc" ToRole="NetSysFunc1" />
+          <NavigationProperty Name="NetSysFunc2" Relationship="Self.FK_dbo_Sys_Func_dbo_Sys_Func_ParentFuncId" FromRole="NetSysFunc1" ToRole="NetSysFunc" />
+          <NavigationProperty Name="NetSysRole" Relationship="Self.NetSysFuncSysRoles" FromRole="NetSysFunc" ToRole="NetSysRole" />
+        </EntityType>
+        <EntityType Name="NetSysRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="Int32" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreationTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="NetSysUser" Relationship="Self.FK_NetSysUser_NetSysRole1" FromRole="NetSysRole" ToRole="NetSysUser" />
+          <NavigationProperty Name="NetSysFunc" Relationship="Self.NetSysFuncSysRoles" FromRole="NetSysRole" ToRole="NetSysFunc" />
+        </EntityType>
+        <EntityType Name="NetSysUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Account" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="Int32" Nullable="false" />
+          <Property Name="Gender" Type="Int32" />
+          <Property Name="IdCardNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SysRoleId" Type="Int32" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreationTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="NetSysRole" Relationship="Self.FK_NetSysUser_NetSysRole1" FromRole="NetSysUser" ToRole="NetSysRole" />
+          <NavigationProperty Name="NetTenant" Relationship="Self.FK_NetTenant_NetSysUser" FromRole="NetSysUser" ToRole="NetTenant" />
+        </EntityType>
+        <EntityType Name="NetTenant">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FrontImage" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Logo" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Descriptions" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+          <Property Name="CreateUser" Type="Int32" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="OperUser" Type="Int32" />
+          <Property Name="OperTime" Type="DateTime" Precision="3" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="NetSysUser" Relationship="Self.FK_NetTenant_NetSysUser" FromRole="NetTenant" ToRole="NetSysUser" />
+        </EntityType>
+        <EntityType Name="Training">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StartTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EndTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Descriptions" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SignUpStart" Type="DateTime" Precision="3" />
+          <Property Name="SignUpEnd" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="TrainingCheckin" Relationship="Self.FK_Tab_TrainingCheckin_Tab_Training" FromRole="Training" ToRole="TrainingCheckin" />
+          <NavigationProperty Name="TrainingSignUp" Relationship="Self.FK_Tab_TrainingSignUp_Tab_Training" FromRole="Training" ToRole="TrainingSignUp" />
+          <NavigationProperty Name="TrainingTimes" Relationship="Self.FK_Tab_TrainingTimes_Tab_Training" FromRole="Training" ToRole="TrainingTimes" />
+        </EntityType>
+        <EntityType Name="TrainingCard">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CardNumber" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="TrainingCheckin" Relationship="Self.FK_Tab_TrainingCheckin_Tab_TrainingCard" FromRole="TrainingCard" ToRole="TrainingCheckin" />
+          <NavigationProperty Name="TrainingSignUp" Relationship="Self.FK_Tab_TrainingSignUp_Tab_TrainingCard" FromRole="TrainingCard" ToRole="TrainingSignUp" />
+        </EntityType>
+        <EntityType Name="TrainingCheckin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TrainingId" Type="Int32" Nullable="false" />
+          <Property Name="CardId" Type="Int32" Nullable="false" />
+          <Property Name="CheckInTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Training" Relationship="Self.FK_Tab_TrainingCheckin_Tab_Training" FromRole="TrainingCheckin" ToRole="Training" />
+          <NavigationProperty Name="TrainingCard" Relationship="Self.FK_Tab_TrainingCheckin_Tab_TrainingCard" FromRole="TrainingCheckin" ToRole="TrainingCard" />
+          <Property Name="CheckCode" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TrainingSignUp">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TrainingId" Type="Int32" Nullable="false" />
+          <Property Name="CardId" Type="Int32" Nullable="false" />
+          <Property Name="StudentName" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="StudentPhone" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Training" Relationship="Self.FK_Tab_TrainingSignUp_Tab_Training" FromRole="TrainingSignUp" ToRole="Training" />
+          <NavigationProperty Name="TrainingCard" Relationship="Self.FK_Tab_TrainingSignUp_Tab_TrainingCard" FromRole="TrainingSignUp" ToRole="TrainingCard" />
+        </EntityType>
+        <EntityType Name="TrainingTimes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TrainingId" Type="Int32" Nullable="false" />
+          <Property Name="TrainingDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StartTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EndTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Type" Type="Int32" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Training" Relationship="Self.FK_Tab_TrainingTimes_Tab_Training" FromRole="TrainingTimes" ToRole="Training" />
+        </EntityType>
+        <EntityType Name="TrainingVerificationCode">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StudentPhone" Type="Int32" />
+          <Property Name="TrainingId" Type="Int32" Nullable="false" />
+          <Property Name="IsVerification" Type="Int32" />
+          <Property Name="VerificationCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VerificationTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <Association Name="FK_dbo_Sys_Func_dbo_Sys_Func_ParentFuncId">
+          <End Role="NetSysFunc" Type="Self.NetSysFunc" Multiplicity="0..1" />
+          <End Role="NetSysFunc1" Type="Self.NetSysFunc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NetSysFunc">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="NetSysFunc1">
+              <PropertyRef Name="ParentFuncId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NetSysUser_NetSysRole1">
+          <End Role="NetSysRole" Type="Self.NetSysRole" Multiplicity="1" />
+          <End Role="NetSysUser" Type="Self.NetSysUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NetSysRole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="NetSysUser">
+              <PropertyRef Name="SysRoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NetTenant_NetSysUser">
+          <End Role="NetSysUser" Type="Self.NetSysUser" Multiplicity="1" />
+          <End Role="NetTenant" Type="Self.NetTenant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NetSysUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="NetTenant">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tab_TrainingCheckin_Tab_Training">
+          <End Role="Training" Type="Self.Training" Multiplicity="1" />
+          <End Role="TrainingCheckin" Type="Self.TrainingCheckin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Training">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TrainingCheckin">
+              <PropertyRef Name="TrainingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tab_TrainingSignUp_Tab_Training">
+          <End Role="Training" Type="Self.Training" Multiplicity="1" />
+          <End Role="TrainingSignUp" Type="Self.TrainingSignUp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Training">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TrainingSignUp">
+              <PropertyRef Name="TrainingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tab_TrainingTimes_Tab_Training">
+          <End Role="Training" Type="Self.Training" Multiplicity="1" />
+          <End Role="TrainingTimes" Type="Self.TrainingTimes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Training">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TrainingTimes">
+              <PropertyRef Name="TrainingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tab_TrainingCheckin_Tab_TrainingCard">
+          <End Role="TrainingCard" Type="Self.TrainingCard" Multiplicity="1" />
+          <End Role="TrainingCheckin" Type="Self.TrainingCheckin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TrainingCard">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TrainingCheckin">
+              <PropertyRef Name="CardId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tab_TrainingSignUp_Tab_TrainingCard">
+          <End Role="TrainingCard" Type="Self.TrainingCard" Multiplicity="1" />
+          <End Role="TrainingSignUp" Type="Self.TrainingSignUp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TrainingCard">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TrainingSignUp">
+              <PropertyRef Name="CardId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="NetSysFuncSysRoles">
+          <End Role="NetSysFunc" Type="Self.NetSysFunc" Multiplicity="*" />
+          <End Role="NetSysRole" Type="Self.NetSysRole" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="NetOperateLog" EntityType="Self.NetOperateLog" />
+          <EntitySet Name="NetSysFunc" EntityType="Self.NetSysFunc" />
+          <EntitySet Name="NetSysRole" EntityType="Self.NetSysRole" />
+          <EntitySet Name="NetSysUser" EntityType="Self.NetSysUser" />
+          <EntitySet Name="NetTenant" EntityType="Self.NetTenant" />
+          <EntitySet Name="Training" EntityType="Self.Training" />
+          <EntitySet Name="TrainingCard" EntityType="Self.TrainingCard" />
+          <EntitySet Name="TrainingCheckin" EntityType="Self.TrainingCheckin" />
+          <EntitySet Name="TrainingSignUp" EntityType="Self.TrainingSignUp" />
+          <EntitySet Name="TrainingTimes" EntityType="Self.TrainingTimes" />
+          <EntitySet Name="TrainingVerificationCode" EntityType="Self.TrainingVerificationCode" />
+          <AssociationSet Name="FK_dbo_Sys_Func_dbo_Sys_Func_ParentFuncId" Association="Self.FK_dbo_Sys_Func_dbo_Sys_Func_ParentFuncId">
+            <End Role="NetSysFunc" EntitySet="NetSysFunc" />
+            <End Role="NetSysFunc1" EntitySet="NetSysFunc" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NetSysUser_NetSysRole1" Association="Self.FK_NetSysUser_NetSysRole1">
+            <End Role="NetSysRole" EntitySet="NetSysRole" />
+            <End Role="NetSysUser" EntitySet="NetSysUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NetTenant_NetSysUser" Association="Self.FK_NetTenant_NetSysUser">
+            <End Role="NetSysUser" EntitySet="NetSysUser" />
+            <End Role="NetTenant" EntitySet="NetTenant" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tab_TrainingCheckin_Tab_Training" Association="Self.FK_Tab_TrainingCheckin_Tab_Training">
+            <End Role="Training" EntitySet="Training" />
+            <End Role="TrainingCheckin" EntitySet="TrainingCheckin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tab_TrainingSignUp_Tab_Training" Association="Self.FK_Tab_TrainingSignUp_Tab_Training">
+            <End Role="Training" EntitySet="Training" />
+            <End Role="TrainingSignUp" EntitySet="TrainingSignUp" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tab_TrainingTimes_Tab_Training" Association="Self.FK_Tab_TrainingTimes_Tab_Training">
+            <End Role="Training" EntitySet="Training" />
+            <End Role="TrainingTimes" EntitySet="TrainingTimes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tab_TrainingCheckin_Tab_TrainingCard" Association="Self.FK_Tab_TrainingCheckin_Tab_TrainingCard">
+            <End Role="TrainingCard" EntitySet="TrainingCard" />
+            <End Role="TrainingCheckin" EntitySet="TrainingCheckin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tab_TrainingSignUp_Tab_TrainingCard" Association="Self.FK_Tab_TrainingSignUp_Tab_TrainingCard">
+            <End Role="TrainingCard" EntitySet="TrainingCard" />
+            <End Role="TrainingSignUp" EntitySet="TrainingSignUp" />
+          </AssociationSet>
+          <AssociationSet Name="NetSysFuncSysRoles" Association="Self.NetSysFuncSysRoles">
+            <End Role="NetSysFunc" EntitySet="NetSysFunc" />
+            <End Role="NetSysRole" EntitySet="NetSysRole" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AttendanceModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="NetOperateLog">
+            <EntityTypeMapping TypeName="AttendanceModel.NetOperateLog">
+              <MappingFragment StoreEntitySet="NetOperateLog">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Field1" ColumnName="Field1" />
+                <ScalarProperty Name="Field2" ColumnName="Field2" />
+                <ScalarProperty Name="Field3" ColumnName="Field3" />
+                <ScalarProperty Name="Field4" ColumnName="Field4" />
+                <ScalarProperty Name="Field5" ColumnName="Field5" />
+                <ScalarProperty Name="OperatorId" ColumnName="OperatorId" />
+                <ScalarProperty Name="OperatorCreateTime" ColumnName="OperatorCreateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NetSysFunc">
+            <EntityTypeMapping TypeName="AttendanceModel.NetSysFunc">
+              <MappingFragment StoreEntitySet="NetSysFunc">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="OrderNumber" ColumnName="OrderNumber" />
+                <ScalarProperty Name="AreaName" ColumnName="AreaName" />
+                <ScalarProperty Name="ControllerName" ColumnName="ControllerName" />
+                <ScalarProperty Name="ActionName" ColumnName="ActionName" />
+                <ScalarProperty Name="ParentFuncId" ColumnName="ParentFuncId" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="IsTenantFunc" ColumnName="IsTenantFunc" />
+                <ScalarProperty Name="FuncType" ColumnName="FuncType" />
+                <ScalarProperty Name="IsDisplay" ColumnName="IsDisplay" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NetSysRole">
+            <EntityTypeMapping TypeName="AttendanceModel.NetSysRole">
+              <MappingFragment StoreEntitySet="NetSysRole">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NetSysUser">
+            <EntityTypeMapping TypeName="AttendanceModel.NetSysUser">
+              <MappingFragment StoreEntitySet="NetSysUser">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Account" ColumnName="Account" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="IdCardNo" ColumnName="IdCardNo" />
+                <ScalarProperty Name="SysRoleId" ColumnName="SysRoleId" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NetTenant">
+            <EntityTypeMapping TypeName="AttendanceModel.NetTenant">
+              <MappingFragment StoreEntitySet="NetTenant">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="FrontImage" ColumnName="FrontImage" />
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
+                <ScalarProperty Name="Descriptions" ColumnName="Descriptions" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="OperUser" ColumnName="OperUser" />
+                <ScalarProperty Name="OperTime" ColumnName="OperTime" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Training">
+            <EntityTypeMapping TypeName="AttendanceModel.Training">
+              <MappingFragment StoreEntitySet="Training">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="Descriptions" ColumnName="Descriptions" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="SignUpStart" ColumnName="SignUpStart" />
+                <ScalarProperty Name="SignUpEnd" ColumnName="SignUpEnd" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TrainingCard">
+            <EntityTypeMapping TypeName="AttendanceModel.TrainingCard">
+              <MappingFragment StoreEntitySet="TrainingCard">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CardNumber" ColumnName="CardNumber" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TrainingCheckin">
+            <EntityTypeMapping TypeName="AttendanceModel.TrainingCheckin">
+              <MappingFragment StoreEntitySet="TrainingCheckin">
+                <ScalarProperty Name="CheckCode" ColumnName="CheckCode" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TrainingId" ColumnName="TrainingId" />
+                <ScalarProperty Name="CardId" ColumnName="CardId" />
+                <ScalarProperty Name="CheckInTime" ColumnName="CheckInTime" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TrainingSignUp">
+            <EntityTypeMapping TypeName="AttendanceModel.TrainingSignUp">
+              <MappingFragment StoreEntitySet="TrainingSignUp">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TrainingId" ColumnName="TrainingId" />
+                <ScalarProperty Name="CardId" ColumnName="CardId" />
+                <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+                <ScalarProperty Name="StudentPhone" ColumnName="StudentPhone" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TrainingTimes">
+            <EntityTypeMapping TypeName="AttendanceModel.TrainingTimes">
+              <MappingFragment StoreEntitySet="TrainingTimes">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TrainingId" ColumnName="TrainingId" />
+                <ScalarProperty Name="TrainingDate" ColumnName="TrainingDate" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TrainingVerificationCode">
+            <EntityTypeMapping TypeName="AttendanceModel.TrainingVerificationCode">
+              <MappingFragment StoreEntitySet="TrainingVerificationCode">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="StudentPhone" ColumnName="StudentPhone" />
+                <ScalarProperty Name="TrainingId" ColumnName="TrainingId" />
+                <ScalarProperty Name="IsVerification" ColumnName="IsVerification" />
+                <ScalarProperty Name="VerificationCode" ColumnName="VerificationCode" />
+                <ScalarProperty Name="VerificationTime" ColumnName="VerificationTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="NetSysFuncSysRoles" TypeName="AttendanceModel.NetSysFuncSysRoles" StoreEntitySet="NetSysFuncSysRoles">
+            <EndProperty Name="NetSysFunc">
+              <ScalarProperty Name="Id" ColumnName="SysFuncId" />
+            </EndProperty>
+            <EndProperty Name="NetSysRole">
+              <ScalarProperty Name="Id" ColumnName="SysRoleId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

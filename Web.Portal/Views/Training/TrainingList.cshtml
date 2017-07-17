@@ -1,0 +1,294 @@
+﻿@{
+    ViewBag.Title = "培训班列表";
+}
+<div class="row" style="background-color:white;margin-top:-15px">
+    <form class="form-horizontal" role="form" style="margin-top:6px">
+        <div class="col-sm-3">
+            <div class="form-group form-group">
+                <label class="col-sm-4 control-label" for="formGroupInputSmall" style="text-align:center">培训班</label>
+                <div class="col-sm-8">
+                    <input class="form-control" v-model="trainListSearchDto.Name" type="text" id="formGroupInputSmall" placeholder="培训班名称">
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group form-group">
+                <label class="col-sm-3 control-label" for="StartTime" style="text-align:center">创建时间</label>
+                <div class="col-sm-4">
+                    <input class="form-control" v-model="trainListSearchDto.Start" type="text" id="StartTime" placeholder="开始">
+                </div>
+                <div class="col-sm-1">
+                    至
+                </div>
+                <div class="col-sm-4">
+                    <input class="form-control" v-model="trainListSearchDto.End" type="text" id="EndTime" placeholder="结束">
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group form-group">
+                <div class="col-sm-8">
+                    <button type="button" v-on:click="getList()" class="btn btn-w-m btn-primary ">搜索</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>培训班列表</h5>
+                <div class="ibox-tools" style="margin-top:-7px">
+                    <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-primary  btn-sm">新增培训班</button>
+                </div>
+            </div>
+            <div class="ibox-content" style="margin-top:5px">
+                <table class="table" v-if="list.length>0">
+                    <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th>培训班名称</th>
+                            <th>报名开始时间</th>
+                            <th>报名截止时间</th>
+                            <th>报名状态</th>
+                            <th>开课时间</th>
+                            <th>结课时间</th>
+                            <th>开课状态</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="item in list">
+                            <td>{{list.indexOf(item)+1}}</td>
+                            <td>{{item.Name}}</td>
+                            <td>{{item.SignUpStartStr}}</td>
+                            <td>{{item.SignUpEndStr}}</td>
+                            <td>{{item.SignUpStatusStr}}</td>
+                            <td>{{item.StartTimeStr}}</td>
+                            <td>{{item.EndTimeStr}}</td>
+                            <td>{{item.TrainingStatusStr}}</td>
+                            <td>
+                                <button class="btn btn-info btn-xs" v-on:click="toDetail(item.Id)" type="button"><i class="fa fa-paste"></i> 详细</button>
+                                <button class="btn btn-info btn-xs" v-on:click="editTrain(item)" type="button"><i class="fa fa-paste"></i> 编辑</button>
+                                <button class="btn btn-danger btn-xs" v-on:click="ToStudentList(item.Id)" type="button"><i class="fa fa-paste"></i> 学员列表</button>
+                                <button class="btn btn-danger btn-xs" v-on:click="ToTimeList(item.Id)" type="button"><i class="fa fa-paste"></i> 考勤日期</button>
+                                <button class="btn btn-info btn-xs" v-on:click="ToGenerate(item.Id)" type="button"><i class="fa fa-paste"></i> 生成二维码</button>
+                                <button class="btn btn-info btn-xs" v-on:click="ToAbsentStudentList(item.Id)" type="button"><i class="fa fa-paste"></i> 无考勤记录学员</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div id="pager"></div>
+                <blockquote v-if="list.length==0">
+                    <p>暂无任何数据。</p>
+                    <footer>抱歉，没有查询到任何数据，请更改查询添加或<cite title="Source Title"><a data-toggle="modal" data-target="#myModal" href="#">新增数据</a>！</cite></footer>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">编辑培训班信息</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal m-t" id="signupForm" novalidate="novalidate">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">培训班名称：</label>
+                        <div class="col-sm-8">
+                            <input id="TrainName" name="TrainName" v-model="dto.Name" class="form-control" type="text" aria-required="true" aria-invalid="false">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">开课时间：</label>
+                        <div class="col-sm-8">
+                            <input id="T_Start" name="T_Start" v-model="dto.StartTime" class="form-control" type="text" aria-required="true" aria-invalid="false">
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">结课时间：</label>
+                        <div class="col-sm-8">
+                            <input id="T_End" name="T_End" v-model="dto.EndTime" class="form-control" type="text" aria-required="true" aria-invalid="false">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">报名开始时间：</label>
+                        <div class="col-sm-8">
+                            <input id="Sign_Start" name="Sign_Start" v-model="dto.SignUpStart" class="form-control" type="text" aria-required="true" aria-invalid="false">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">报名结束时间：</label>
+                        <div class="col-sm-8">
+                            <input id="Sign_End" name="Sign_End" v-model="dto.SignUpEnd" class="form-control" type="text" aria-required="true" aria-invalid="false">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">培训班简介：</label>
+                        <div class="col-sm-8">
+                            <textarea id="Description" name="Description" v-model="dto.Descriptions" class="form-control" style="resize:none;" rows="3"></textarea>
+                            <span class="help-block m-b-none"><i class="fa fa-info-circle"></i>简介最大允许200字符。</span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" v-on:click="save()">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section js{
+    <script src="~/Scripts/app/Training/TrainList/services.js"></script>
+    <script src="~/Scripts/app/Training/TrainList/index.js"></script>
+    <script src="~/Content/js/plugins/datetimepicker/bootstrap-datetimepicker.js"></script>
+    <script src="~/Content/js/plugins/datetimepicker/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            /**
+             * 下面是进行插件初始化
+             * 你只需传入相应的键值对
+             * */
+            $('#signupForm').bootstrapValidator({
+                fields: {
+                    TrainName: {
+                        validators: {
+                            notEmpty: {
+                                /*非空提示*/
+                                message: '培训班名称不能为空！'
+                            },
+                            stringLength: {
+                                /*长度提示*/
+                                min: 1,
+                                max: 30,
+                                message: '培训班名称长度必须在6到15之间'
+                            }
+                        }
+                    },
+                    T_Start: {
+                        validators: {
+                            notEmpty: {
+                                /*非空提示*/
+                                message: '开课时间不能为空！'
+                            }
+                        }
+                    },
+                    T_End: {
+                        validators: {
+                            notEmpty: {
+                                /*非空提示*/
+                                message: '结课时间不能为空！'
+                            }
+                        }
+                    },
+                    Sign_Start: {
+                        validators: {
+                            notEmpty: {
+                                /*非空提示*/
+                                message: '报名开始时间不能为空！'
+                            }
+
+                        }
+                    },
+                    Sign_End: {
+                        validators: {
+                            notEmpty: {
+                                /*非空提示*/
+                                message: '报名结束时间不能为空！'
+                            }
+                        }
+                    }
+                }
+            });
+        });
+
+        $('#StartTime').datetimepicker({
+            language: 'zh-CN',
+            format: "yyyy-mm-dd hh:ii:ss",
+            autoclose: 1,
+            minView: 2,
+        }).on("click", function () {
+            $("#StartTime").datetimepicker("setEndDate", $("#EndTime").val())
+        })
+        $('#EndTime').datetimepicker({
+            language: 'zh-CN',
+            format: "yyyy-mm-dd hh:ii:ss",
+            autoclose: 1,
+            minView: 2,
+        }).on("click", function () {
+            $("#EndTime").datetimepicker("setStartDate", $("#StartTime").val())
+            })
+
+        $('#T_Start').datetimepicker({
+            language: 'zh-CN',
+            format: "yyyy-mm-dd hh:ii",
+            showMeridian: true,
+            autoclose: true,
+            todayBtn: true,
+        }).on("click", function () {
+            $("#T_Start").datetimepicker("setEndDate", $("#T_End").val())
+        }).on('hide', function (e) {
+            $('#signupForm').data('bootstrapValidator').updateStatus('T_Start', 'NOT_VALIDATED', null).validateField('T_Start');
+        });
+        $('#T_End').datetimepicker({
+            language: 'zh-CN',
+            format: "yyyy-mm-dd hh:ii",
+            showMeridian: true,
+            autoclose: true,
+            todayBtn: true,
+        }).on("click", function () {
+            $("#T_End").datetimepicker("setStartDate", $("#T_Start").val())
+        }).on('hide', function (e) {
+            $('#signupForm').data('bootstrapValidator').updateStatus('T_End', 'NOT_VALIDATED', null).validateField('T_End');
+            });
+
+
+
+        $('#Sign_Start').datetimepicker({
+            language: 'zh-CN',
+            format: "yyyy-mm-dd hh:ii",
+            showMeridian: true,
+            autoclose: true,
+            todayBtn: true,
+        }).on("click", function () {
+            $("#Sign_Start").datetimepicker("setEndDate", $("#Sign_End").val())
+        }).on('hide', function (e) {
+            $('#signupForm').data('bootstrapValidator').updateStatus('Sign_Start', 'NOT_VALIDATED', null).validateField('Sign_Start');
+        });
+
+        $('#Sign_End').datetimepicker({
+            language: 'zh-CN',
+            format: "yyyy-mm-dd hh:ii",
+            showMeridian: true,
+            autoclose: true,
+            todayBtn: true,
+        }).on("click", function () {
+            $("#Sign_End").datetimepicker("setStartDate", $("#Sign_Start").val())
+        }).on('hide', function (e) {
+            $('#signupForm').data('bootstrapValidator').updateStatus('Sign_End', 'NOT_VALIDATED', null).validateField('Sign_End');
+        });
+
+
+        $('#T_Start,#T_End,#Sign_Start,#Sign_End').datetimepicker().on('changeDate', function (ev) {
+        }).on('hide', function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+        });
+
+
+    </script>
+}
+
+
+@section css{
+    <link href="~/Content/js/plugins/datetimepicker/bootstrap-datetimepicker.css" rel="stylesheet" />
+}

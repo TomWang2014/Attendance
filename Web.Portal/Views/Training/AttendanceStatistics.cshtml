@@ -1,0 +1,105 @@
+﻿@model List<Attendance.Application.AttendanceMgtServices.Dtos.TrainListItem>
+@{
+    ViewBag.Title = "考勤统计";
+}
+<div style="background-color:white;margin-top:-43px">
+    <div class="row clearfix" id="topSelect" style="padding-top:7px">
+        <div class="col-md-4 column">
+            <div class="row clearfix">
+                <form class="form-horizontal">
+                    <div class="col-md-4 column" style="text-align:center">
+                        <label class="control-label">培训班</label>
+                    </div>
+                    <div class="col-md-8 column">
+                        <!-- 机构选择 -->
+                        <select class="" name="" v-model="romId">
+                            <option value="-1" selected="selected">请选择培训班</option>
+                            <!-- 根据id判断当前房间 -->
+                            <option v-for="item in romList" :value="item.id">{{item.title}}</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-8 column">
+            <div class="row clearfix">
+                <form class="form-horizontal">
+                    <div class="col-md-2 column" style="text-align:center">
+                        <label class="control-label">
+                            查询日期
+                        </label>
+                    </div>
+                    <div class="col-md-8 column">
+                        <input type="text" name="" value="" class="col-md-5 column timestart" disabled="disabled">
+                        <span class="col-md-2 column">至</span>
+                        <input type="text" name="" value="" class="col-md-5 column timeend" disabled="disabled">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="row clearfix" id="secSelect">
+        <div class="col-md-2 column" style="text-align:center">
+            <label class="control-label">
+                时间段
+            </label>
+        </div>
+        <div class="col-md-8 column" >
+            <div class="row clearfix">
+                <form class="col-md-8 column">
+                    <div class="checkbox">
+                        <label class="allcheck" style="font-size:small">
+                            <input type="checkbox" v-model="allCheck" v-on:change="topAllCheck()">全选
+                        </label>
+                    </div>
+                </form>
+            </div>
+            <form class="row clearfix" v-for="item in timeList">
+                <div class="col-md-12 column checkbox">
+                    <label  style="font-size:small">
+                        <input type="checkbox" v-model="item.value" v-on:change="secondCheck(item)">{{item.date}}
+                    </label>
+                </div>
+                <div class="col-md-12 column">
+                    <div class="row clearfix">
+                        <div class="col-md-3 column checkbox" v-for="tem in item.list">
+                            <label  style="font-size:small">
+                                <input type="checkbox" v-model="tem.value" v-on:change="lastCheck(item,tem)">时段{{item.list.indexOf(tem)+1}}：{{tem.start|timeVer}}-{{tem.end|timeVer}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+    <div class="row clearfix" id="secSelect">
+        <div class="col-md-12 column" style="text-align:right;margin-bottom:10px">
+            <button type="button" name="button" class="btn btn-primary" v-on:click="lookFor()">查询</button>
+            <button type="button" name="button" class="btn btn-primary" v-on:click="DownLoad()" style="margin-right:3px">查询结果导出</button>
+        </div>
+    </div>
+  
+</div>
+<div class="row" style="margin-top:10px">
+    <div class="col-md-12">
+        <div class="ibox-content" style="display:none" id="divtablelist">
+            <table class="table" id="tablelist"></table>
+        </div>
+    </div>
+</div>
+
+
+@section js{
+    <script src="~/Content/js/plugins/datetimepicker/bootstrap-datetimepicker.js"></script>
+    <script src="~/Content/js/plugins/datetimepicker/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="~/Scripts/app/Training/Statistics/timeselect.js"></script>
+}
+
+
+@section css{
+    <link href="~/Content/js/plugins/datetimepicker/bootstrap-datetimepicker.css" rel="stylesheet" />
+    <link href="~/Content/css/timeselect.css" rel="stylesheet" />
+}
+
+

@@ -1,0 +1,144 @@
+.main {
+  width: 1171px;
+  margin: 0 auto;
+  padding-top: 65px;
+}
+
+.main > p {
+  color: #575757;
+  font-size: 14px;
+}
+
+    .main > h2 {
+        margin: 0 0 15px 0;
+        color: #0b60a1;
+        font-size: 16px;
+        line-height: 40px;
+        background: url('images/icon/line.jpg') no-repeat left bottom;
+    }
+
+.main > h2 > span {
+  height: 15px;
+  width: 3px;
+  background-color: #0b60a1;
+  float: left;
+  margin-top: 22.5px;
+  margin-right: 15px;
+}
+
+.main > .right {
+  width: 1171px;
+}
+
+.main > .right > .topnav {
+  height: 45px;
+  background-color: #f7f7f7;
+  border-bottom: 1px solid #dcdcdc;
+  box-sizing: border-box;
+  padding-top: 5px;
+}
+
+.main > .right > .topnav > .search {
+  margin: 0;
+  padding: 0;
+  margin-left: 15px;
+  float: left;
+  height: 34px;
+  width: 270px;
+  box-sizing: border-box;
+  border: 1px solid #dbdbdb;
+  background-color: #ffffff;
+}
+
+.main > .right > .topnav > .search > span {
+  display: block;
+  height: 21px;
+  width: 26px;
+  float: right;
+  background: url("/content/main/images/course/search.png");
+  margin: 5px;
+  cursor: pointer;
+}
+
+.main > .right > .topnav > .search > input {
+  width: 230px;
+  float: left;
+  border: none;
+  height: 100%;
+  box-sizing: border-box;
+  padding-left: 5px;
+  color: #333333;
+}
+
+.main > .right > .topnav > .list {
+  float: right;
+  width: 80px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  font-size: 12px;
+  color: #727171;
+  cursor: pointer;
+  position: relative;
+}
+
+.main > .right > .topnav > .list:hover .child {
+  display: block;
+}
+
+.main > .right > .topnav > .list > .child {
+  position: absolute;
+  border: 1px solid #eeeeee;
+  border-bottom: none;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  display: none;
+}
+
+.main > .right > .topnav > .list > .child > h3 {
+  width: 100%;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.main > .right > .topnav > .list > .child > .checked {
+  color: #0b60a2;
+}
+
+.main > .right > ul {
+  margin-top: 20px;
+  width: 1191px;
+}
+
+.main > .right > ul > li {
+    cursor:pointer;
+  float: left;
+  width: 220px;
+  box-sizing: border-box;
+  border: 1px solid #ededed;
+  margin-right: 18px;
+  margin-bottom: 14px;
+}
+.main > .right > ul > li:hover h3{
+    color:#0b60a1;
+}
+.main > .right > ul > li > img {
+  display: block;
+  width: 100%;
+  height: 135px;
+}
+
+.main > .right > ul > li > h3 {
+  font-size: 14px;
+  color: #414141;
+  height: 40px;
+  line-height: 20px;
+  padding: 5px 15px;
+  overflow:hidden;
+}
+
+.main > .right > #page {
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 20px;
+}

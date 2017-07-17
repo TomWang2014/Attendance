@@ -1,0 +1,82 @@
+.content {
+  width: 1170px;
+  margin: 0 auto;
+  padding-top: 50px;
+}
+
+.content > img {
+  display: block;
+  width: 100%;
+}
+
+.content > .main {
+  padding-top: 10px;
+}
+
+.content > .main > .right {
+  width: 100%;
+  float: right;
+  min-height: 400px;
+}
+
+.content > .main > .right > .title {
+  height: 40px;
+  line-height: 40px;
+   background: url('images/icon/line.jpg') no-repeat left bottom;
+}
+
+.content > .main > .right > .title > h2 {
+  width: 100px;
+  float: left;
+  height: 100%;
+  box-sizing: border-box;
+  color: #0b60a1;
+  font-size: 16px;
+}
+
+.content > .main > .right > .title > span {
+  float: right;
+  color: #636262;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.content > .main > .right > .title > p {
+  color: #575757;
+  font-size: 14px;
+  float: right;
+  margin-right: 15px;
+}
+
+.content > .main > .right > ul {
+  margin-top: 5px;
+}
+
+.content > .main > .right > ul > li {
+  height: 50px;
+  line-height: 50px;
+  color: #595959;
+  font-size: 14px;
+  border-bottom: 1px dashed #c7c7c7;
+}
+
+.content > .main > .right > ul > li > p {
+  overflow: hidden;
+  white-space: pre;
+  text-overflow: ellipsis;
+  float: left;
+  width: 760px;
+}
+
+.content > .main > .right > ul > li > span {
+  float: right;
+  margin-right: 15px;
+  font-size: 12px;
+  color: #979797;
+}
+
+.content > .main > .right > #page {
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 45px;
+}

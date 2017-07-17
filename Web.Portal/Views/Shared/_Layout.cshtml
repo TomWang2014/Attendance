@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+    <title>考勤系统-@ViewBag.Title</title>
+
+    <!-- CSS文件 -->
+    <link href="/Content/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/Content/css/font-awesome.css" rel="stylesheet">
+    <link href="/Content/css/animate.css" rel="stylesheet">
+    <link href="/Content/css/plugins/toastr/toastr.min.css" rel="stylesheet" />
+    <link href="~/Content/css/plugins/bootstrapValidator.css" rel="stylesheet" />
+    <link href="~/Content/css/index.css" rel="stylesheet" />
+    <style>
+        blockquote {
+            border-left: 5px solid #00BCD4;
+        }
+
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+    @RenderSection("css", false)
+
+
+</head>
+<body v-cloak class="gray-bg">
+    <div class="wrapper wrapper-content  animated fadeInRight">
+        @RenderBody()
+    </div>
+</body>
+</html>
+
+<!-- 全局pathjs -->
+<script type="text/javascript">
+    document.write("<s" + "cript type='text/javascript' src='/Scripts/static/paths.js?" + Math.random() + "'></s" + "cript>");
+</script>
+
+<script src="/Content/js/jquery.min.js"></script>
+<script src="/Content/js/bootstrap.min.js?v=3.3.6"></script>
+<script src="~/Content/js/plugins/validata/bootstrapValidator.js"></script>
+<script src="/Content/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+<script src="/Content/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<script src="/Content/js/plugins/layer/layer.js"></script>
+<script src="/Content/js/plugins/toastr/toastr.min.js"></script>
+<script src="~/Scripts/vue.js"></script>
+<script src="~/Scripts/static/pager.js"></script>
+
+<script src="~/Scripts/toolkit.js"></script>
+<script src="~/Scripts/situation.js"></script>
+<!--*当前页面脚本 -->
+@RenderSection("js", false)

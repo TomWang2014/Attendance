@@ -1,0 +1,415 @@
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+}
+
+body .content {
+  padding-top: 70px;
+  width: 1171px;
+  margin: 0 auto;
+}
+
+body .content > div:after {
+  display: block;
+  content: "";
+  clear: both;
+}
+
+body .content > .top {
+  background-color: #f0f0f0;
+}
+
+body .content > .top > img {
+  width: 860px;
+  display: block;
+  float: left;
+  height: 330px;
+}
+
+body .content > .top > .hot-rec {
+  width: 306px;
+  float: right;
+  height: 330px;
+}
+
+body .content > .top > .hot-rec > h2 {
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  color: #ffffff;
+  font-size: 18px;
+  background-color: #719bbb;
+}
+
+body .content > .top > .hot-rec > ul {
+  height: 290px;
+  overflow: hidden;
+}
+
+body .content > .top > .hot-rec > ul > li {
+  height: 48.5px;
+  line-height: 48.5px;
+  border-bottom: 1px dashed #ffffff;
+  background-color: #eeeeee;
+  box-sizing: border-box;
+  padding: 0 15px;
+  color: #3a3a3a;
+  font-size: 16px;
+}
+
+body .content > .top > .hot-rec > ul > .checked {
+  background-color: #3493db;
+}
+
+body .content > .top > .hot-rec > ul > .checked > a {
+  color: #ffffff;
+}
+
+body .content > .two > .left {
+  float: left;
+}
+
+body .content > .two > div {
+  width: 1170px;
+  margin-top: 10px;
+}
+
+body .content > .two > div > h2 {
+  border-bottom: 1px solid #e8e8e8;
+  color: #1f1f1f;
+  font-size: 18px;
+  line-height: 50px;
+}
+
+body .content > .two > div > h2 > span {
+  height: 15px;
+  width: 3px;
+  background-color: #0b60a1;
+  float: left;
+  margin-top: 17.5px;
+  margin-right: 15px;
+}
+
+body .content > .two > div > h2 > button {
+  height: 20px;
+  padding: 0 3px;
+  box-sizing: border-box;
+  color: #585858;
+  font-size: 12px;
+  line-height: 18px;
+  float: right;
+  margin-top: 15px;
+  border: 1px solid #dcdcdc;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+body .content > .two > div > ul {
+  width: 1200px;
+}
+
+body .content > .two > div > ul > li {
+  width: 570px;
+  color: #323232;
+  font-size: 14px;
+  height: 45px;
+  line-height: 45px;
+  border-bottom: 1px solid #e2e2e2;
+  display: inline-block;
+  margin-right: 25px;
+}
+
+body .content > .two > div > ul > li > b {
+  width: 70px;
+  height: 23px;
+  line-height: 23px;
+  font-weight: 400px;
+  font-size: 12px;
+  color: #ffffff;
+  text-align: center;
+  display: inline-block;
+  float: left;
+  margin-top: 12px;
+  margin-right: 10px;
+}
+
+body .content > .two > div > ul > li .zhengce {
+  background-color: #30aaa9;
+}
+
+body .content > .two > div > ul > li .dontai {
+  background-color: #3493db;
+}
+
+body .content > .two > div > ul > li > a {
+  display: inline-block;
+  width: 400px;
+  overflow: hidden;
+  white-space: pre;
+  text-overflow: ellipsis;
+  line-height: 45px;
+}
+
+body .content > .two > div > ul > li > span {
+  float: right;
+  margin-right: 10px;
+  font-size: 11px;
+}
+
+body .content > .three > div > h2 {
+  width: 1171px;
+  margin: 10px 0 30px 0;
+  border-bottom: 1px solid #e8e8e8;
+  color: #1f1f1f;
+  font-size: 18px;
+  line-height: 60px;
+}
+
+body .content > .three > div > h2 > span {
+  height: 15px;
+  width: 3px;
+  background-color: #0b60a1;
+  float: left;
+  margin-top: 22.5px;
+  margin-right: 15px;
+}
+
+body .content > .three > div > h2 > button {
+  border: 1px solid #dcdcdc;
+  background-color: transparent;
+  height: 20px;
+  padding: 0 3px;
+  box-sizing: border-box;
+  color: #585858;
+  font-size: 12px;
+  line-height: 18px;
+  float: right;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+body .content > .three > .left {
+  float: left;
+  width: 1190px;
+}
+
+body .content > .three > .left > ul {
+  font-size: 0;
+  width: 100%;
+}
+body .content > .three > .left > ul:after{
+    content:"";
+    display:block;
+    clear:both;
+}
+
+body .content > .three > .left > ul > li {
+    float:left;
+  margin-bottom: 20px;
+  cursor: pointer;
+  margin-right: 12px;
+  width: 225px;
+}
+
+body .content > .three > .left > ul > li:hover > h3 {
+  color: #0b60a1;
+}
+
+body .content > .three > .left > ul > li > img {
+  display: block;
+  height: 135px;
+  width: 225px;
+}
+
+body .content > .three > .left > ul > li > h3 {
+  margin-top: 10px;
+  color: #515151;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 20px;
+  height:40px;
+  overflow:hidden;
+}
+
+body .content > .five > div > h2 {
+  width: 1171px;
+  margin: 0 0 30px 0;
+  border-bottom: 1px solid #e8e8e8;
+  color: #1f1f1f;
+  font-size: 18px;
+  line-height: 60px;
+}
+
+body .content > .five > div > h2 > span {
+  height: 15px;
+  width: 3px;
+  background-color: #0b60a1;
+  float: left;
+  margin-top: 22.5px;
+  margin-right: 15px;
+}
+
+body .content > .five > div > h2 > button {
+  border: 1px solid #dcdcdc;
+  background-color: transparent;
+  height: 20px;
+  padding: 0 3px;
+  box-sizing: border-box;
+  color: #585858;
+  font-size: 12px;
+  line-height: 18px;
+  float: right;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+body .content > .five > .left {
+  float: left;
+  width: 1190px;
+}
+
+body .content > .five > .left > ul {
+  font-size: 0;
+  width: 100%;
+}
+body .content > .five > .left > ul :after{
+    content:"";
+    display:block;
+    clear:both;
+}
+
+body .content > .five > .left > ul > li {
+    float:left;
+  margin-bottom: 20px;
+  cursor: pointer;
+  margin-right: 12px;
+  width: 225px;
+}
+
+body .content > .five > .left > ul > li:hover > h3 {
+  color: #0b60a1;
+}
+
+body .content > .five > .left > ul > li > img {
+  display: block;
+  height: 135px;
+  width: 225px;
+}
+
+body .content > .five > .left > ul > li > h3 {
+  margin-top: 10px;
+  color: #515151;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 20px;
+  height:40px;
+  overflow:hidden;
+}
+
+body .content > .five > .right {
+  width: 285px;
+  float: right;
+}
+
+body .content > .five > .right > img {
+  display: block;
+  width: 100%;
+  height: 173px;
+}
+
+body .content > .five > .right > ul {
+  height: 315px;
+  overflow: hidden;
+}
+
+body .content > .five > .right > ul > li {
+  height: 45px;
+  border-bottom: 1px solid #cecece;
+  color: #201e1e;
+  line-height: 45px;
+  font-size: 14px;
+  text-align: left;
+  box-sizing: border-box;
+}
+
+body .content > .six {
+  padding-bottom: 10px;
+}
+
+body .content > .six > h2 {
+  margin: 0 0 30px 0;
+  border-bottom: 1px solid #e8e8e8;
+  color: #1f1f1f;
+  font-size: 18px;
+  line-height: 60px;
+}
+
+body .content > .six > h2 > span {
+  height: 15px;
+  width: 3px;
+  background-color: #0b60a1;
+  float: left;
+  margin-top: 22.5px;
+  margin-right: 15px;
+}
+
+body .content > .six > h2 > button {
+  border: 1px solid #dcdcdc;
+  background-color: transparent;
+  height: 20px;
+  padding: 0 3px;
+  box-sizing: border-box;
+  color: #585858;
+  font-size: 12px;
+  line-height: 18px;
+  float: right;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+body .content > .six > .silder-box {
+  width: 1170px;
+  margin: 0 auto;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+body .content > .six > .silder-box ul {
+  font-size: 0;
+}
+body .content > .six > .silder-box ul:after {
+  content:"";
+  display:block;
+  clear:both;
+}
+
+body .content > .six > .silder-box li {
+  float: left;
+  width: 20%;
+  box-sizing: border-box;
+  padding: 15px;
+  border-right: 1px solid #dedede;
+}
+
+body .content > .six > .silder-box li:last-of-type {
+  border-right: none;
+}
+
+body .content > .six > .silder-box li img {
+  display: block;
+  width: 100%;
+}
+
+body .content > .six > .silder-box li h3 {
+  font-size: 16px;
+  color: #444444;
+  width: 100%;
+  overflow: hidden;
+  white-space: pre;
+  text-overflow: ellipsis;
+  text-align: center;
+  margin-top: 5px;
+}

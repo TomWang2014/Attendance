@@ -1,0 +1,72 @@
+﻿@model Attendance.Application.SystemMgtServices.Dtos.TrainingDto
+@{
+    ViewBag.Title = "培训班信息";
+}
+<div class="row" id="div_print" style="margin-top:-15px">
+    <div class="col-sm-6">
+        <div class="ibox float-e-margins">
+            <div class="ibox-content">
+                <div class="project-list">
+                    @if (Model != null)
+                    {
+                        <table class="table text-center">
+                            <tbody>
+                                <tr>
+                                    <td style="font-size:large;font-weight:bold">培训班名称：@Model.Name</td>
+                                </tr>
+
+                                <tr>
+                                    <td style="font-size:large;font-weight:bold">报名时间：@Model.SignUpStartStr-@Model.SignUpEndStr</td>
+                                </tr>
+
+                                <tr>
+                                    <td style="font-size:large;font-weight:bold">培训班密码：@Model.Password</td>
+                                </tr>
+                                <tr>
+                                    <td><img src="@ViewBag.Src" /></td>
+                                </tr>
+                                <tr>
+                                    <td style="font-size:large;font-weight:bold">上课时间：@Model.StartTimeStr-@Model.EndTimeStr</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    }
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<div class="row clearfix ">
+    <div class="col-md-6 column text-right" style="margin-top:10px">
+        <button type="button" class="btn  btn-primary" onclick="printdiv('div_print')">打印</button>
+        <button type="button" class="btn  btn-primary" onclick="back()">返回</button>
+    </div>
+
+</div>
+
+@section js{
+    <script>
+        var vm = new Vue({
+            el: 'body'
+        });
+
+        function back() {
+            window.location.href = "/Training/TrainingList";
+        }
+
+        function printdiv(printpage) {
+            var headstr = "<html><head><title></title></head><body>";
+            var footstr = "</body>";
+            var newstr = document.getElementById(printpage).innerHTML;
+            var oldstr = document.body.innerHTML;
+            document.body.innerHTML = headstr + newstr + footstr;
+            window.print();
+            document.body.innerHTML = oldstr;
+            return false;
+        }
+    </script>
+
+
+}

@@ -1,0 +1,67 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="App-Config" content="fullscreen=yes,useHistoryState=yes,transition=yes">
+    <meta name="hotcss" content="initial-dpr=2">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>学员报名</title>
+    <link href="~/Content/SignUp/reset.css" rel="stylesheet" />
+    <link href="~/Content/SignUp/sign.css" rel="stylesheet" />
+    <script src="~/Content/js/hotcss.js"></script>
+</head>
+<body>
+    <div class="sign_inner">
+        <figure><img src="~/Content/SignUp/kaoqing/logo.png" alt="logo"></figure>
+        <h1>人力资源和社会保障部<br />教育培训中心</h1>
+        <ul>
+            <li>
+                <i class="iconfont">&#xe613;</i>
+                <h3>培训班名称:</h3>
+                <p>@ViewBag.TrainName</p>
+            </li>
+            <li>
+                <i class="iconfont">&#xe6a9;</i>
+                <h3>培训起止时间:</h3>
+                <p>@ViewBag.Start-@ViewBag.End</p>
+            </li>
+            <li>
+                <i class="iconfont">&#xe60e;</i>
+                <input type="text" placeholder="请输入正确的学员卡号" v-model="number">
+            </li>
+            <li>
+                <i class="iconfont">&#xe602;</i>
+                <input type="text" placeholder="请输入培训班密码" v-model="password">
+            </li>
+            <li>
+                <i class="iconfont">&#xe60b;</i>
+                <input type="text" placeholder="请输入您的手机号码" v-model="phone">
+            </li>
+            <li>
+                <i class="iconfont">&#xe600;</i>
+                <input type="text" placeholder="请输入您的姓名" v-model="name">
+            </li>
+            <li>
+                <i class="iconfont">&#xe73e;</i>
+                <input type="text" placeholder="手机验证码" v-model="code">
+                <button class="{'clicked':!flag}" v-on:click="getCode()">{{time}}</button>
+            </li>
+        </ul>
+        <button v-on:click="sign()">报名培训班</button>
+    </div>
+    <script src="~/Content/js/plugins/jquery/dist/jquery.min.js"></script>
+    <script src="~/Content/js/plugins/vue/dist/vue.min.js"></script>
+    <script src="~/Content/SignUp/sign.js"></script>
+    <script>
+        var trainId=@ViewBag.TrainId;
+    </script>
+</body>
+</html>

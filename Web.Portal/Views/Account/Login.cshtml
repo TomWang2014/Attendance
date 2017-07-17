@@ -1,0 +1,70 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>登陆</title>
+    <link rel="stylesheet" href="~/Content/enter/enter.css" />
+</head>
+<body>
+    <div class="lay_left">
+        <img src="/Content/enter/imgs/logo.png" alt="" class="mod_logo">
+        <h1>人力资源和社会保障部教育培训网</h1>
+        <h2>The Ministry of Human Resources and Social Security Education Enterprise</h2>
+        <ul class="mod_funct">
+            <li><i></i><span>报名情况统计分析</span></li>
+            <li><i></i><span>学习记录上报情况</span></li>
+            <li><i></i><span>考试记录上报情况</span></li>
+        </ul>
+        <p class="mod_number">
+            10,000,0条
+        </p>
+        <h5 class="mod_data">
+            累计收到上报数据
+        </h5>
+    </div>
+    <div class="lay_right">
+        <div class="mod_inner">
+            <h2>教育培训中心管理平台</h2>
+            <form class="mod_form" method="POST" action="@Url.Action("Login", "Account")">
+                <div class="admin">
+                    <i></i>
+                    <input type="text" placeholder="请输入账号" id="account" name="account" required="">
+                </div>
+                <div class="pass">
+                    <i></i>
+                    <input placeholder="请输入密码" type="password" id="password" name="password" required="">
+                </div>
+                <div class="safe">
+                    <i></i>
+                    <input type="text" placeholder="请输入验证码" id="verCode" name="VerCode" class="form-control" required="">
+                    <img onclick="NextCode();" id="VerificationCode" style="cursor: pointer" src="@Url.Action("GetImgVerificationCode", "Account")" />
+                </div>
+
+                <div class="mod_btn" style="border-bottom:none">
+                    <button type="submit">登陆</button>
+                </div>
+            </form>
+
+
+        </div>
+    </div>
+
+</body>
+</html>
+<script type="text/javascript" charset="utf-8">if (window.top !== window.self) { window.top.location = window.location; }</script>
+
+<script src="/Content/js/jquery.min.js"></script>
+<script src="/Content/js/bootstrap.min.js?v=3.3.6"></script>
+<script>
+    // 刷新验证码
+    function NextCode() {
+        $("#VerificationCode").attr("src", "@Url.Action("GetImgVerificationCode", "Account")?d=" + (new Date().valueOf()));
+
+    }
+    $(document).ready(function () {
+        NextCode();
+    });
+</script>

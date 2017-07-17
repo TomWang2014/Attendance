@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>人力资源和社会保障部教育培训中心网站@(ViewBag.Title == null ? "" : "-" + ViewBag.Title)</title>
+    <link href="~/Content/main/common.css" rel="stylesheet" />
+    @RenderSection("css", false)
+</head>
+<body>
+    <div class="header">
+        <div class="grid_wrap">
+            <div class="logo pull_left">
+                <a href="" title="教育培训网"><img src="~/Content/main/images/logo.jpg" width="822" height="97" border="0" alt="教育培训网" title="教育培训网" /></a>
+            </div>
+            <div class="pull_right">
+                <script type="text/javascript">
+                    function _nl_ys_check() {
+                        var keyword = document.getElementById('showkeycode125141').value;
+                        if (keyword == null || keyword == "") {
+                            alert("请输入你要检索的内容！");
+                            return false;
+                        }
+                        if (window.toFF == 1) {
+                            document.getElementById("lucenenewssearchkeyword125141").value = Simplized(keyword);
+                        } else {
+                            document.getElementById("lucenenewssearchkeyword125141").value = keyword;
+                        }
+                        var base64 = new Base64();
+                        document.getElementById("lucenenewssearchkeyword125141").value = base64.encode(document.getElementById("lucenenewssearchkeyword125141").value);
+                        new VsbFormFunc().disableAutoEnable(document.getElementById("showkeycode125141"));
+                        return true;
+                    }
+                </script>
+                <form id="au1a" action="http://edu.mohrss.gov.cn/search.jsp?wbtreeid=1001" method="post" name="au1a" onsubmit="return _nl_ys_check()" class="search">
+                    <input id="lucenenewssearchkeyword125141" type="hidden" name="lucenenewssearchkeyword" value="" />
+                    <input id="_lucenesearchtype125141" type="hidden" name="_lucenesearchtype" value="1" />
+                    <input id="searchScope125141" type="hidden" name="searchScope" value="0" />
+                    <label class="search-input">
+                        <input id="showkeycode125141" name="showkeycode" type="text" value="站内搜索" onfocus="if(this.value=='站内搜索')this.value='';" onblur="if(this.value=='')this.value='站内搜索';" maxlength="255" autocomplete="off" />
+                    </label>
+                    <label class="search-btn">
+                        <input type="submit" align="absmiddle" value="" style="cursor: hand" /><i class="icon icon-search"></i>
+                    </label>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="nav clearfix">
+        <div class="grid_wrap">
+            <ul>
+                <li class="item"><a href="http://edu.mohrss.gov.cn">首页</a></li>
+                <li class="item"><a href="http://edu.mohrss.gov.cn/jgjs1/jgjj.htm">机构介绍</a></li>
+                <li class="item"><a href="http://www.mohrss.gov.cn/SYrlzyhshbzb/zcfg/flfg/">政策法规</a></li>
+                <li class="item"><a href="http://edu.mohrss.gov.cn/xtpx.htm">系统培训</a></li>
+                <li class="item"><a href="http://edu.mohrss.gov.cn/qypx.htm">企业培训</a></li>
+                <li class="item"><a href="http://edu.mohrss.gov.cn/jnpx.htm">技能培训</a></li>
+                <li class="item current"><a href="/">网络培训</a></li>
+                <li class="item"><a href="http://edu.mohrss.gov.cn/pxjd1/jjpxjd.htm">培训基地</a></li>
+                <li class="item"><a href="http://edu.mohrss.gov.cn/dwjl.htm">对外交流</a></li>
+                <li class="item last-item"><a href="http://edu.mohrss.gov.cn/jxjy.htm">教学教研</a></li>
+            </ul>
+        </div>
+    </div>
+
+    @RenderBody()
+
+    <div class="footer">
+        <div class="grid_wrap clearfix">
+            <div style="width:820px;" class="pull_left">
+                <p>Copyright2017. All right reserved edu.mohrss.gov.cn</p>
+                <p>主办单位：人力资源和社会保障部人事司、人力资源和社会保障部教育培训中心</p>
+                <p>技术支持:<a href="http://www.zjzx.cn" target="_blank" style="color: #fff;line-height: 2;text-align: center;"><img src="~/content/main/images/common/zjzxicon.png" alt="" style="margin:0 3px -2px 3px;" />北京中教在线科技有限公司</a></p>
+            </div>
+            <div class="pull_right">
+                <p><br /> 人力资源和社会保障部教育培训中心网站</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+
+<script src="~/Scripts/main/base64.js"></script>
+<script src="~/Scripts/main/formfunc.js"></script>
+<script src="~/Scripts/main/mp4video.js"></script>
+<script src="~/Content/js/jquery-1.12.4.min.js"></script>
+<script src="~/Scripts/vue.js"></script>
+
+<!--*当前页面脚本 -->
+@RenderSection("js", false)

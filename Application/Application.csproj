@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0973EE8F-5235-47FB-B54E-0C5AD9E86DE4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Attendance.Application</RootNamespace>
+    <AssemblyName>Attendance.Application</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MongoDB.Bson, Version=1.8.2.34, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver, Version=1.8.2.34, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\MongoDB.Driver.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppInit.cs" />
+    <Compile Include="AttendanceMgtServices\AttendanceServices.cs" />
+    <Compile Include="AttendanceMgtServices\Dtos\AbsentListSearch.cs" />
+    <Compile Include="AttendanceMgtServices\Dtos\AttendanceResultDto.cs" />
+    <Compile Include="AttendanceMgtServices\Dtos\AttendanceStaticDto.cs" />
+    <Compile Include="AttendanceMgtServices\Dtos\StudentListItem.cs" />
+    <Compile Include="AttendanceMgtServices\Dtos\StudentListSearch.cs" />
+    <Compile Include="AttendanceMgtServices\Dtos\StudentResultDto.cs" />
+    <Compile Include="AttendanceMgtServices\Dtos\StudentStaticDto.cs" />
+    <Compile Include="AttendanceMgtServices\Dtos\TimeListSearch.cs" />
+    <Compile Include="AttendanceMgtServices\Dtos\TrainingCheckinDto.cs" />
+    <Compile Include="AttendanceMgtServices\Dtos\TrainingDateDto.cs" />
+    <Compile Include="AttendanceMgtServices\Dtos\TrainingSignUpDto.cs" />
+    <Compile Include="AttendanceMgtServices\Dtos\TrainingSignUpItem.cs" />
+    <Compile Include="AttendanceMgtServices\Dtos\TrainingTimeDetails.cs" />
+    <Compile Include="AttendanceMgtServices\Dtos\TrainingTimeDto.cs" />
+    <Compile Include="AttendanceMgtServices\Dtos\TrainListItem.cs" />
+    <Compile Include="AttendanceMgtServices\Dtos\TrainListSearch.cs" />
+    <Compile Include="AttendanceMgtServices\Dtos\TrainSignUpNoComparer.cs" />
+    <Compile Include="Enums\SysRoleType.cs" />
+    <Compile Include="Enums\SysUserType.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SystemMgtServices\Dtos\AddRole.cs" />
+    <Compile Include="SystemMgtServices\Dtos\CurrentUserDto.cs" />
+    <Compile Include="SystemMgtServices\Dtos\FuncSmall.cs" />
+    <Compile Include="SystemMgtServices\Dtos\NetExamListSearch.cs" />
+    <Compile Include="SystemMgtServices\Dtos\PayListSearch.cs" />
+    <Compile Include="SystemMgtServices\Dtos\RoleItem.cs" />
+    <Compile Include="SystemMgtServices\Dtos\RoleNote.cs" />
+    <Compile Include="SystemMgtServices\Dtos\SignUpListSearch.cs" />
+    <Compile Include="SystemMgtServices\Dtos\SysFuncItem.cs" />
+    <Compile Include="SystemMgtServices\Dtos\Tab_VerificationCode.cs" />
+    <Compile Include="SystemMgtServices\Dtos\TenantItem.cs" />
+    <Compile Include="SystemMgtServices\Dtos\TenantSearch.cs" />
+    <Compile Include="SystemMgtServices\Dtos\TrainingDto.cs" />
+    <Compile Include="SystemMgtServices\Dtos\TrainingSignUpDto.cs" />
+    <Compile Include="SystemMgtServices\Dtos\UserItem.cs" />
+    <Compile Include="SystemMgtServices\Dtos\UserSearch.cs" />
+    <Compile Include="SystemMgtServices\SysLogServices.cs" />
+    <Compile Include="SystemMgtServices\SysSendMessageServices.cs" />
+    <Compile Include="SystemMgtServices\SystemServices.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\Domain.csproj">
+      <Project>{d92a9d4f-c391-48cd-b13d-846b54fb9a54}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj">
+      <Project>{639a5c41-c570-4eac-980d-04812a773c83}</Project>
+      <Name>Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

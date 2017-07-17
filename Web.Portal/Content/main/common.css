@@ -1,0 +1,553 @@
+/**
+ * YUI 3.5.0 - reset.css (http://developer.yahoo.com/yui/3/cssreset/)
+ * http://cssreset.com
+ * Copyright 2012 Yahoo! Inc. All rights reserved.
+ * http://yuilibrary.com/license/
+ */
+/*
+    TODO will need to remove settings on HTML since we can't namespace it.
+    TODO with the prefix, should I group by selector or property for weight savings?
+*/
+html{
+    background:#FFF;
+}
+/*
+    TODO remove settings on BODY since we can't namespace it.
+*/
+/*
+    TODO test putting a class on HEAD.
+        - Fails on FF.
+*/
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+code,
+form,
+fieldset,
+legend,
+input,
+textarea,
+p,
+blockquote,
+th,
+td {
+    margin:0;
+    padding:0;
+}
+table {
+    border-collapse:collapse;
+    border-spacing:0;
+}
+fieldset,
+img {
+    border:0;
+}
+/*
+    TODO think about hanlding inheritence differently, maybe letting IE6 fail a bit...
+*/
+address,
+caption,
+cite,
+code,
+dfn,
+em,
+strong,
+th,
+var {
+    font-style:normal;
+    font-weight:normal;
+}
+
+ol,
+ul {
+    list-style:none;
+}
+
+caption,
+th {
+    text-align:left;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-size:100%;
+    font-weight:normal;
+}
+q:before,
+q:after {
+    content:'';
+}
+abbr,
+acronym {
+    border:0;
+    font-variant:normal;
+}
+/* to preserve line-height and selector appearance */
+sup {
+    vertical-align:text-top;
+}
+sub {
+    vertical-align:text-bottom;
+}
+input,
+textarea,
+select {
+    font-family:inherit;
+    font-size:inherit;
+    font-weight:inherit;
+}
+/*to enable resizing for IE*/
+input,
+textarea,
+select {
+    *font-size:100%;
+}
+/*because legend doesn't inherit in IE */
+legend {
+    color:#000;
+}
+/* reset end */
+
+html, body {
+    height: 100%;
+    font: 12px/1.8 "微软雅黑", Arial, sans-serif;
+    color: #333;
+}
+a {
+    color: #333;
+    text-decoration: none;
+}
+a:hover {
+    color: #0e77c9;
+}
+.clear{clear:both;}
+/* common */
+.clearfix {
+    *zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+    display: table;
+    line-height: 0;
+    content: "";
+}
+.clearfix:after {
+    clear: both;
+}
+
+.ellipsis {
+    /* ellipsis */
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+}
+
+/* split */
+.split {
+   padding: 0 6px;
+}
+.dotted-line-b {
+    border-bottom: 1px dashed #c4c4c4;
+}
+.dotted-line-r {
+    border-right: 1px dashed #c4c4c4;
+}
+
+/* em color*/
+.em-orange {
+    color: #f55600 !important;
+}
+.em-blue {
+    color: #0073f0 !important;
+}
+.em-red {
+    color: #c70000 !important;
+}
+.em-green {
+    color: #009d16 !important;
+}
+.em-tomato {
+    color: tomato;
+}
+
+/* float */
+.pull_left {
+    float: left;
+}
+.pull_right {
+    float: right;
+}
+
+/* font */
+.f-weight {
+    font-weight: 700 !important;
+}
+.f-light {
+    color: #666 !important;
+}
+.f-large {
+    font-size: 18px !important;
+}
+.f-smaller {
+    font-size: 12px;
+}
+
+/* link */
+.text-link {
+    color: #333;
+    font-size: 12px;
+}
+.more {
+    float: right;
+    margin-top: 6px;
+    padding: 0 2px;
+    color: #333;
+    font-weight: 500;
+    font-size: 10px;
+    background: #fff;
+    border: 1px solid #dcdcdc;
+    line-height: 1.5;
+   *display: inline;
+}
+.more samp {
+    font-family: arial, courier, monospace;
+    color: #6e6e6e;
+    font-weight: 500;
+}
+.en-more {
+    color: #ad1b1b;
+    *display: inline;
+}
+
+/* text align */
+.text-left {
+    text-align: left;
+}
+.text-right {
+    text-align: right;
+}
+.text-center {
+    text-align: center;
+}
+.text-indent {
+    text-indent: 2em;
+}
+
+/* color */
+.color-pink {
+    background: #fc8392;
+}
+.color-yellow {
+    background: #f7bd5a;
+}
+.color-skyblue {
+    background: #45cfe9;
+}
+.color-lightgreen {
+    background: #84db8a;
+}
+
+/* margin、padding */
+.mt5 {
+    margin-top: 5px !important;
+}
+.mt10 {
+    margin-top: 10px !important;
+}
+.mt15 {
+    margin-top: 15px !important;
+}
+.mt20 {
+    margin-top: 20px !important;
+}
+.p5 {
+    padding: 5px !important;
+}
+.p10 {
+    padding: 10px !important;
+}
+.p15 {
+    padding: 15px !important;
+}
+.p20 {
+    padding: 20px !important;
+}
+
+/* icon */
+.icon {
+    display: inline-block;
+    width: 20px;
+    height: 18px;
+    vertical-align: middle;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-color: transparent;
+}
+.icon-lg {
+    display: inline-block;
+    width: 29px;
+    height: 22px;
+    margin-right: 5px;
+    vertical-align: middle;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-color: transparent;
+}
+.icon-search {
+    background-image: url(/content/main/images/icon/icon-search.png);
+    vertical-align: bottom;
+}
+.icon-time {
+    background-image: url(../../images/common/icon/icon-time.png);
+}
+.icon-location {
+    background-image: url(../../images/common/icon/icon-location.png);
+}
+.icon-timelimit {
+    background-image: url(../../images/common/icon/icon-timelimit.png);
+}
+.icon-people {
+    background-image: url(../../images/common/icon/icon-people.png);
+}
+.icon-prev {
+	width:35px;
+	height:35px;
+    background: url(../../images/common/icon/qhleft.gif) no-repeat center #848a8f ;
+}
+.icon-next {
+   width:35px;
+	height:35px;
+    background: url(../../images/common/icon/qhright.gif) no-repeat center #479ee0 ;
+}
+.icon-user {
+    background-image: url(../../images/common/icon/qhleft.gif));
+}
+.icon-discuss {
+    background-image: url(../../images/common/icon/icon-discuss.png);
+}
+.icon-edit {
+    background-image: url(../../images/common/icon/icon-edit.png);
+}
+
+/* btn */
+
+/* layout */
+.line {
+    padding: 5px;
+}
+.grid_wrap {
+    width: 1171px;
+    margin: 0 auto;
+
+}
+.grid_left {
+    float: left;
+    width: 334px;
+    margin-right: 25px;
+}
+.grid_middle {
+    float: left;
+    width: 556px;
+}
+.grid_right {
+    float: right;
+    width: 230px;
+}
+.float_grid {
+    float: left;
+    margin: 5px 0;
+}
+.grid_box {
+    height: 385px;
+    background: #fff;
+}
+.grid_box .inner {
+    overflow: hidden;
+    zoom: 1;
+}
+.grid_box h2 {
+    margin-bottom: 10px;
+    padding: 5px 0;
+    font-size: 20px;
+    color: #333;
+    border-bottom: 1px solid #e4e4e4;
+}
+.grid_box h2 span {
+    padding: 0 15px;
+    line-height: 1;
+    border-left: 3px solid #0d80bf;
+}
+
+/* header */
+.header {
+    height: 154px;
+    background: #0b60a2;
+}
+
+.header .logo {
+    padding-top: 27px;
+    padding-left: 1px;
+}
+.header .logo2 {
+    padding-top: 17px;
+    padding-left: 16px;
+}
+.header .logo img {
+    vertical-align: middle;
+}
+
+/* search */
+.search {
+    margin-top: 56px;
+    margin-right: 0px;
+    padding: 5px;
+}
+.search input {
+    border: 0;
+    outline: 0;
+    background-color: transparent;
+    color: #fff;
+}
+.search input[type="text"] {
+    width: 230px;
+}
+.search label {
+    vertical-align: middle;
+}
+.search .search-input {
+    padding: 8px;
+    background: url(/content/main/images/common/search_input_bg.png) repeat;
+}
+.search .search-btn {
+    padding: 8px;
+	*padding: 7px;
+    background: url(/content/main/images/common/search_btn_bg.png) repeat;
+    cursor: pointer;
+}
+.search .search-btn input {
+    width: 0;
+}
+
+/* nav */
+.nav {
+    position: absolute;
+    top: 154px;
+    width: 100%;
+    background: url(/content/main/images/common/nav_bg.png) #0b60a2 repeat;
+	z-index:9999;
+}
+.nav .item {
+    float: left;
+}
+.nav .item a {
+    display: block;
+    height: 50px;
+    padding: 0 27.6px;
+    text-align: center;
+    line-height: 50px;
+    color: #fff;
+    font-size: 16px;
+    border-right: 1px solid #6d6e6f;
+}
+.nav .item.last-item a {
+    border-right: 1px solid transparent;;
+}
+.nav .item a:hover,
+.nav .item.current a {
+    text-decoration: none;
+    background: #0b60a1;
+    border-right: 1px solid transparent;
+}
+
+/* content */
+.content {
+    padding-top: 18px;
+}
+.content2,
+.content3 {
+    padding-top: 74px;
+}
+
+/* footer */
+.footer {
+    margin-top: 30px;
+    padding: 24px;
+    padding-bottom: 45px;
+    background: #0b60a2;
+}
+.footer p {
+    color: #fff;
+    line-height: 2;
+    text-align: center;
+}
+.footer .pull_left p {
+    text-align: left;
+}
+.footer .pull_right p {
+    text-align: right;
+}
+
+
+.overflow_pre{
+  overflow: hidden;
+  white-space: pre;
+  text-overflow: ellipsis;
+}
+
+/*1分页000000000000样式*/
+.pagination {
+    display: inline-block;
+    padding-left: 0;
+    margin: 20px 0;
+    border-radius: 4px;
+}
+
+    .pagination > li {
+        display: inline;
+    }
+
+        .pagination > li:first-child > a, .pagination > li:first-child > span {
+            margin-left: 0;
+            border-top-left-radius: 4px;
+            border-bottom-left-radius: 4px;
+        }
+
+    .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+        z-index: 2;
+        color: #fff;
+        cursor: default;
+        background-color: #428bca;
+        border-color: #428bca;
+    }
+
+    .pagination > li > a, .pagination > li > span {
+        position: relative;
+        float: left;
+        padding: 6px 12px;
+        margin-left: -1px;
+        line-height: 1.42857143;
+        color: #428bca;
+        text-decoration: none;
+        background-color: #fff;
+        border: 1px solid #ddd;
+    }
+
+.behover:hover >h3{
+  color: #0b60a1;
+}

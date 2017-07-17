@@ -1,0 +1,104 @@
+﻿@{
+    ViewBag.Title = "课时安排";
+}
+<div class="row" style="background-color:white;margin-top:-15px">
+    <form class="form-horizontal" role="form" style="margin-top:6px">
+        <div class="col-sm-9">
+            <div class="form-group form-group">
+                <label class="col-sm-3 control-label" for="StartTime" style="text-align:center">考勤日期</label>
+                <div class="col-sm-4">
+                    <input class="form-control" v-model="trainListSearchDto.StartTime" type="text" id="StartTime" placeholder="开始">
+                </div>
+                <div class="col-sm-1">
+                    至
+                </div>
+                <div class="col-sm-4">
+                    <input class="form-control" v-model="trainListSearchDto.EndTime" type="text" id="EndTime" placeholder="结束">
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group form-group">
+                <div class="col-sm-12">
+                    <button type="button" v-on:click="getList()" class="btn btn-w-m btn-primary ">搜索</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>考勤日期列表</h5>
+                <div class="ibox-tools" style="margin-top:-7px">
+                    <button type="button" v-on:click="save()" class="btn btn-primary  btn-sm">添加</button>
+                </div>
+            </div>
+            <div class="ibox-content"  style="margin-top:5px">
+                <table class="table" v-if="list.length>0">
+                    <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th>考勤日期</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="item in list">
+                            <td>{{list.indexOf(item)+1}}</td>
+                            <td>{{item.TrainingDateStr}}</td>
+                            <td>
+                                <button class="btn btn-info btn-xs" v-on:click="detailDate(item.TrainingDate)" type="button"><i class="fa fa-paste"></i>查看</button>
+                                <button class="btn btn-info btn-xs" v-on:click="editDate(item.TrainingDate)" type="button"><i class="fa fa-paste"></i> 编辑</button>
+                                <button class="btn btn-danger btn-xs" v-on:click="deleteDate(item.TrainingDate)" type="button"><i class="fa fa-paste"></i> 删除</button>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div id="pager"></div>
+                <blockquote v-if="list.length==0">
+                    <p>暂无任何数据。</p>
+                    <footer>抱歉，没有查询到任何数据，请更改查询！</footer>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section js{
+    <script>
+        var TrainId = @ViewBag.TrainId;
+    </script>
+    <script src="~/Scripts/app/Training/TrainingTimeList/services.js"></script>
+    <script src="~/Scripts/app/Training/TrainingTimeList/index.js"></script>
+    <script src="~/Content/js/plugins/datetimepicker/bootstrap-datetimepicker.js"></script>
+    <script src="~/Content/js/plugins/datetimepicker/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script type="text/javascript">
+
+
+        $('#StartTime').datetimepicker({
+            language: 'zh-CN',
+            format: "yyyy-mm-dd",
+            autoclose: 1,
+            minView: 2,
+        }).on("click", function () {
+            $("#StartTime").datetimepicker("setEndDate", $("#EndTime").val())
+        })
+        $('#EndTime').datetimepicker({
+            language: 'zh-CN',
+            format: "yyyy-mm-dd",
+            autoclose: 1,
+            minView: 2,
+        }).on("click", function () {
+            $("#EndTime").datetimepicker("setStartDate", $("#StartTime").val())
+        })
+    </script>
+}
+
+
+@section css{
+    <link href="~/Content/js/plugins/datetimepicker/bootstrap-datetimepicker.css" rel="stylesheet" />
+}

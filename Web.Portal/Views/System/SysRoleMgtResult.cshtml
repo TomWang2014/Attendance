@@ -1,0 +1,165 @@
+﻿@{
+    ViewBag.Title = "系统管理";
+}
+
+<div class="col-sm-12" style="margin-top:-15px">
+    <div class="ibox float-e-margins">
+        <div class="ibox-title"  >
+            <h5>所有角色</h5>
+            <div class="ibox-tools" style="margin-top:-7px">
+                <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-primary  btn-sm">新增角色</button>
+            </div>
+        </div>
+        <div class="ibox-content" style="margin-top:5px">
+    
+            <div class="project-list">
+                <table class="table" v-if="list.length>0">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>角色编号</th>
+                            <th>角色名称</th>
+                            <th>拥有人数</th>
+                            <th>创建时间</th>
+                            <th>其他操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="item in list">
+                            <td>{{$index+1}}</td>
+                            <td>{{item.Number}}</td>
+                            <td>{{item.Name}}</td>
+                            <td>{{item.NetSysUsersCount}} 人</td>
+                            <td>{{item.CreationTime}}</td>
+                            <td>
+                                <button class="btn btn-info btn-xs" v-on:click="editRole(item)" type="button"><i class="fa fa-paste"></i> 编辑</button>
+                                <button class="btn btn-danger btn-xs" v-on:click="deleteRole(item.Id)" type="button"><i class="fa fa-paste"></i> 删除</button>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <blockquote v-if="list.length==0">
+                    <p>暂无任何数据。</p>
+                    <footer>抱歉，没有查询到任何数据，请更改查询添加或<cite title="Source Title"><a data-toggle="modal" data-target="#myModal" href="#">新增数据</a>！</cite></footer>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@*<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>角色管理</h5>
+                <div class="ibox-tools">
+                    <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-primary btn-xs">新增角色</button>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <table class="table" v-if="list.length>0">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>角色编号</th>
+                            <th>角色名称</th>
+                            <th>拥有人数</th>
+                            <th>创建时间</th>
+                            <th>其他操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="item in list">
+                            <td>{{$index+1}}</td>
+                            <td>{{item.Number}}</td>
+                            <td>{{item.Name}}</td>
+                            <td>{{item.NetSysUsersCount}} 人</td>
+                            <td>{{item.CreationTime}}</td>
+                            <td>
+                                <button class="btn btn-info btn-xs" v-on:click="editRole(item)" type="button"><i class="fa fa-paste"></i> 编辑</button>
+                                <button class="btn btn-danger btn-xs" v-on:click="deleteRole(item.Id)" type="button"><i class="fa fa-paste"></i> 删除</button>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <blockquote v-if="list.length==0">
+                    <p>暂无任何数据。</p>
+                    <footer>抱歉，没有查询到任何数据，请更改查询添加或<cite title="Source Title"><a data-toggle="modal" data-target="#myModal" href="#">新增数据</a>！</cite></footer>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+</div>*@
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">编辑角色信息</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal m-t" id="signupForm" novalidate="novalidate">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">角色名称：</label>
+                        <div class="col-sm-8">
+                            <input id="roleName" name="roleName" v-model="dto.Name" class="form-control" type="text">
+                            <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 给用户分配角色后，该用户将获得角色属的权限功能。</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">权限分配：</label>
+                        <div class="col-sm-8">
+                            <div id="roleTree">
+
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" v-on:click="save()">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+@section css
+{
+    <link href="~/Content/css/plugins/jsTree/style.min.css" rel="stylesheet" />
+}
+@section js{
+    <script src="~/Content/js/plugins/jsTree/jstree.js"></script>
+    <script src="~/Scripts/app/systems/sysRole/services.js"></script>
+    <script src="~/Scripts/app/systems/sysRole/index.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            /**
+             * 下面是进行插件初始化
+             * 你只需传入相应的键值对
+             * */
+            $('#signupForm').bootstrapValidator({
+                fields: {/*验证*/
+                    roleName: {/*键名username和input name值对应*/
+                        message: 'The username is not valid',
+                        validators: {
+                            notEmpty: {/*非空提示*/
+                                message: '角色名称不能为空！'
+                            },
+                            stringLength: {/*长度提示*/
+                                min: 2,
+                                max: 10,
+                                message: '角色名称名长度必须在2到10之间'
+                            }/*最后一个没有逗号*/
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+}

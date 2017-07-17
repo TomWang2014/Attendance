@@ -1,0 +1,105 @@
+﻿@model List<Attendance.Application.AttendanceMgtServices.Dtos.TrainListItem>
+@{
+    ViewBag.Title = "考勤导入";
+}
+
+
+<div class="row" style="background-color:white;margin-top:-15px">
+    <form class="form-horizontal" id="upLoadForm" method="POST" enctype="multipart/form-data" novalidate="novalidate" style="margin-top:20px">
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            <label for="Training" class="col-sm-2 control-label">培训班</label>
+            <div class="col-sm-6">
+                <select class="form-control " id="Training" name="TrainId">
+                    <option value="-1" selected="selected">请选择培训班</option>
+                    @if (Model != null && Model.Count > 0)
+                {
+                    foreach (var item in Model)
+                    {
+                            <option value="@item.Id">@item.Name</option>
+                    }
+                }
+
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="trainingFile" class="col-sm-2 control-label">考勤文件</label>
+            <div class="col-sm-6">
+                <input type="file" class="form-control" id="trainingFile" name="trainingFile" placeholder="请选择考勤文件">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-6" style="text-align:right">
+                <button type="submit" class="btn btn-primary">导入</button>
+                <a href="~/Content/template.xlsx" class="btn btn-primary">查看模板</a>
+            </div>
+
+        </div>
+
+    </form>
+    <div class="row" style="display:none" id="div_failInfo">        
+        <div class="col-sm-10">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>序号</th>
+                                <th>错误信息</th>
+                            </tr>
+                        </thead>
+                        <tbody id="failList"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section js{
+    <script src="~/Content/js/jquery.form.js"></script>
+    <script>
+        var vm = new Vue({
+            el: 'body'
+        });
+    </script>
+
+    <script>
+        // 表单提交
+        $("#upLoadForm").submit(function () {
+            $("#failList").empty();
+            var trainId = $("#Training").val();
+            if (trainId <= 0) {
+                alert("请选择培训班！");
+                return false;
+            }
+            var file = $("#trainingFile").val();
+            if (file == "") {
+                alert("请选择考勤文件！");
+                return false;
+            }
+            $(this).ajaxSubmit({
+                url: '/Training/TrainUpLoad',
+                type: "post",
+                success: function (data) {
+                    if (data.status == 0) {
+                        $("#div_failInfo").css("display", "block");
+                        $("#failList").append("<tr><td>" + data.msg + "</td></tr>");
+                    } else {
+                        alert(data.msg);
+                        if (data.result.length > 0) {
+                            $("#div_failInfo").css("display", "block");
+                            var arr = data.result.split("|");
+                            if (arr.length > 0) {
+                                for (var i = 0; i < arr.length; i++) {
+                                    $("#failList").append("<tr><td>" + (i + 1) + "</td><td>" + arr[i] + "</td></tr>");
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+            return false;
+        });
+    </script>
+}
